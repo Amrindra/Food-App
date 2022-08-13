@@ -1,5 +1,3 @@
-import "./Veggetable.css";
-
 function Veggetable() {
   return <div>Veggetable</div>;
 }

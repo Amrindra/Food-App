@@ -1,6 +1,6 @@
 import React from "react";
-import Popular from "../../components/popular/Popular";
-import Veggetable from "../../components/veggetable/Veggetable";
+import Popular from "../components/Popular";
+import Veggetable from "../components/Veggetable";
 
 function Homepage() {
   return (

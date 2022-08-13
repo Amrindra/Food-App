@@ -1,5 +1,5 @@
 import React from "react";
-import Homepage from "./homepage/Homepage";
+import Homepage from "./Homepage";
 
 function Pages() {
   return (
