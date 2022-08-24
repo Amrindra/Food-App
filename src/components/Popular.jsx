@@ -20,17 +20,21 @@ function Popular() {
 
   return (
     <div>
-      {popularData.map((recipe) => (
-        <Wrapper>
-          <h3>Popular Picks</h3>
+      <Wrapper>
+        <h3>Popular Picks</h3>
+
+        {/* Splide is a React library for Images slider */}
+        <Splide>
           {popularData.map((recipe) => (
-            <Card>
-              <p>{recipe.title}</p>
-              <img src={recipe.image} alt={recipe.title} />
-            </Card>
+            <SplideSlide>
+              <Card>
+                <p>{recipe.title}</p>
+                <img src={recipe.image} alt={recipe.title} />
+              </Card>
+            </SplideSlide>
           ))}
-        </Wrapper>
-      ))}
+        </Splide>
+      </Wrapper>
     </div>
   );
 }
