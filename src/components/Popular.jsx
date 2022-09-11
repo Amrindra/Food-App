@@ -15,15 +15,19 @@ function Popular() {
     if (checkLocalStorage) {
       setPopularData(JSON.parse(checkLocalStorage));
     } else {
-      const apiRes = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
-      );
-      const data = await apiRes.json();
+      try {
+        const apiRes = await fetch(
+          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
+        );
+        const data = await apiRes.json();
 
-      // Converting data JS object to JSON
-      localStorage.setItem("popular", JSON.stringify(data.recipes));
-      setPopularData(data.recipes);
-      console.log(data.recipes);
+        // Converting data JS object to JSON
+        localStorage.setItem("popular", JSON.stringify(data.recipes));
+        setPopularData(data.recipes);
+        console.log(data.recipes);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

@@ -30,6 +30,7 @@ function Veggetable() {
   useEffect(() => {
     getVeggieData();
   }, []);
+
   return (
     <Container>
       <h3>Vegetarian Choices</h3>
@@ -62,12 +63,11 @@ const Container = styled.div`
 
 const Card = styled.div`
   min-height: 25rem;
-  border-radius: 2rem;
+  border-radius: 2px;
   overflow: hidden;
   position: relative;
 
   img {
-    border-radius: 2rem;
     position: absolute;
     left: 0;
     width: 100%;
