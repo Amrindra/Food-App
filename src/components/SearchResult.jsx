@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const SearchResult = () => {
   const [searchResultData, setSearchResultData] = useState([]);
-  // Using useParams here is to get parms url dynamically
+  // Using useParams here is to get parms url dynamically from the url
   const params = useParams();
 
   // The urlQuery parameter here is used to get the parmas from the url

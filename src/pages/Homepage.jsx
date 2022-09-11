@@ -4,10 +4,12 @@ import Veggetable from "../components/Veggetable";
 
 function Homepage() {
   return (
-    <div>
-      <Popular />
-      <Veggetable />
-    </div>
+    <>
+      <main>
+        <Popular />
+        <Veggetable />
+      </main>
+    </>
   );
 }
 

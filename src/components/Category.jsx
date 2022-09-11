@@ -47,7 +47,7 @@ const Wrapper = styled.div`
   width: 50%;
   height: 6rem;
   border-radius: 50px;
-  margin: 4rem 4rem;
+  margin-top: 4rem;
 `;
 
 const CategoryLink = styled(NavLink)`

@@ -11,7 +11,7 @@ function Popular() {
     // Checking local storage in the browser
     const checkLocalStorage = localStorage.getItem("popular");
 
-    // checking if there is any items in the local storage which is in the browser we don't have to fetch the API
+    // checking if there is any items in the local storage which is in the browser so we don't have to fetch the API
     // In the localStorage we can only store string that's why we used .parse
     if (checkLocalStorage) {
       setPopularData(JSON.parse(checkLocalStorage));

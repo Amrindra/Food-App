@@ -10,7 +10,7 @@ const Searchbar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // This navigate is used to navigate the user to the page that they search for in the search bar section
+    // This navigate is used to navigate the user to the page where they search for in the search bar section
     navigate(`/searchResult/${searchInput}`);
   };
   return (
