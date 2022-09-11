@@ -1,11 +1,12 @@
 import React from "react";
 import Homepage from "./Homepage";
+import { Route, Routes } from "react-router-dom";
 
 function Pages() {
   return (
-    <div>
-      <Homepage />
-    </div>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+    </Routes>
   );
 }
 
