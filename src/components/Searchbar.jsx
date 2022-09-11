@@ -1,13 +1,19 @@
 import React from "react";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import styled from "styled-components";
 
 const Searchbar = () => {
+  const [searchInput, setSearchInput] = useState("");
   return (
     <FormInput>
       <div>
         <FaSearch />
-        <input type="text" />
+        <input
+          type="text"
+          value={searchInput}
+          onChange={(event) => setSearchInput(event.target.value)}
+        />
       </div>
     </FormInput>
   );

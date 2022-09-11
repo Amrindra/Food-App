@@ -41,7 +41,7 @@ const CategoryListItem = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: lightgray;
   width: 50%;
