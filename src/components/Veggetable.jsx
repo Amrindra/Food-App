@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import { Link } from "react-router-dom";
 
 function Veggetable() {
   const [veggie, setVeggie] = useState([]);
@@ -33,7 +34,7 @@ function Veggetable() {
 
   return (
     <Container>
-      <h3>Vegetarian Choices</h3>
+      <h3>Our Today Vegetarian Choices</h3>
       {/* Splide is a React library for Images slider */}
       <Splide
         options={{
@@ -45,11 +46,13 @@ function Veggetable() {
       >
         {veggie.map((recipe) => (
           <SplideSlide key={recipe.id}>
-            <Card>
-              <p>{recipe.title}</p>
-              <img src={recipe.image} alt={recipe.title} />
-              <Gradient />
-            </Card>
+            <Link to={"/recipe/" + recipe.id}>
+              <Card>
+                <p>{recipe.title}</p>
+                <img src={recipe.image} alt={recipe.title} />
+                <Gradient />
+              </Card>
+            </Link>
           </SplideSlide>
         ))}
       </Splide>
@@ -59,6 +62,10 @@ function Veggetable() {
 
 const Container = styled.div`
   margin: 4rem 0;
+
+  h3 {
+    text-transform: capitalize;
+  }
 `;
 
 const Card = styled.div`

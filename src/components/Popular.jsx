@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import { Link } from "react-router-dom";
 
 function Popular() {
   const [popularData, setPopularData] = useState([]);
@@ -37,7 +38,7 @@ function Popular() {
 
   return (
     <Container>
-      <h3>Popular Picks</h3>
+      <h3>Our Today Selection</h3>
       {/* Splide is a React library for Images slider */}
       <Splide
         options={{
@@ -49,11 +50,13 @@ function Popular() {
       >
         {popularData.map((recipe) => (
           <SplideSlide key={recipe.id}>
-            <Card>
-              <p>{recipe.title}</p>
-              <img src={recipe.image} alt={recipe.title} />
-              <Gradient />
-            </Card>
+            <Link to={"/recipe/" + recipe.id}>
+              <Card>
+                <p>{recipe.title}</p>
+                <img src={recipe.image} alt={recipe.title} />
+                <Gradient />
+              </Card>
+            </Link>
           </SplideSlide>
         ))}
       </Splide>
