@@ -12,14 +12,17 @@ const Category = () => {
           <GiNoodles />
           <h4>Chinese</h4>
         </CategoryLink>
+
         <CategoryLink to="/cuisine/vietnamese">
           <GiChopsticks />
           <h4>Japanese</h4>
         </CategoryLink>
+
         <CategoryLink to="/cuisine/italian">
           <FaPizzaSlice />
           <h4>Italian</h4>
         </CategoryLink>
+
         <CategoryLink to="/cuisine/American">
           <FaHamburger />
           <h4>American</h4>
@@ -38,11 +41,11 @@ const CategoryListItem = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background-color: lightgray;
   width: 50%;
-  height: 7rem;
+  height: 6rem;
   border-radius: 50px;
   margin: 4rem 4rem;
 `;
@@ -53,7 +56,6 @@ const CategoryLink = styled(NavLink)`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  margin-right: 2rem;
   text-decoration: none;
   background: linear-gradient(35deg, #494949, #313131);
   width: 6rem;
