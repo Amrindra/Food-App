@@ -1,18 +1,22 @@
 import React from "react";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Searchbar = () => {
   const [searchInput, setSearchInput] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // This navigate is used to navigate the user to the page that they type in
+    navigate("/searchResult/" + searchInput);
   };
   return (
     <FormInput onSubmit={handleSubmit}>
       <div>
-        <FaSearch />
+        <FaSearch onClick={handleSubmit} />
         <input
           type="text"
           value={searchInput}
@@ -49,6 +53,7 @@ const FormInput = styled.form`
     transform: translate(100%, -50%);
     color: white;
     font-size: 1.5rem;
+    cursor: pointer;
   }
 `;
 
