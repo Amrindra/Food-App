@@ -5,8 +5,8 @@ import Veggetable from "../components/Veggetable";
 function Homepage() {
   return (
     <div>
-      <Veggetable />
       <Popular />
+      <Veggetable />
     </div>
   );
 }

@@ -4,20 +4,26 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 function Popular() {
-  const [popularData, setSetPopularData] = useState([]);
+  const [popularData, setPopularData] = useState([]);
 
   const getPopularAPIData = async () => {
     // Checking local storage in the browser
     const checkLocalStorage = localStorage.getItem("popular");
+
+    // checking if there is any items in the local storage which is in the browser we don't have to fetch the API
+    // In the localStorage we can only store string that's why we used .parse
     if (checkLocalStorage) {
-      setSetPopularData(JSON.parse(checkLocalStorage));
+      setPopularData(JSON.parse(checkLocalStorage));
     } else {
       const apiRes = await fetch(
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
       );
       const data = await apiRes.json();
 
-      setSetPopularData(data.recipes);
+      // Converting data JS object to JSON
+      localStorage.setItem("popular", JSON.stringify(data.recipes));
+      setPopularData(data.recipes);
+      console.log(data.recipes);
     }
   };
 
@@ -26,34 +32,32 @@ function Popular() {
   }, []);
 
   return (
-    <div>
-      <Wrapper>
-        <h3>Popular Picks</h3>
-        {/* Splide is a React library for Images slider */}
-        <Splide
-          options={{
-            perPage: 4,
-            gap: "5rem",
-            drag: "free",
-            pagination: false,
-          }}
-        >
-          {popularData.map((recipe) => (
-            <SplideSlide>
-              <Card key={recipe.id}>
-                <p>{recipe.title}</p>
-                <img src={recipe.image} alt={recipe.title} />
-                <Gradient />
-              </Card>
-            </SplideSlide>
-          ))}
-        </Splide>
-      </Wrapper>
-    </div>
+    <Container>
+      <h3>Popular Picks</h3>
+      {/* Splide is a React library for Images slider */}
+      <Splide
+        options={{
+          perPage: 3,
+          gap: "3rem",
+          drag: "free",
+          pagination: false,
+        }}
+      >
+        {popularData.map((recipe) => (
+          <SplideSlide key={recipe.id}>
+            <Card>
+              <p>{recipe.title}</p>
+              <img src={recipe.image} alt={recipe.title} />
+              <Gradient />
+            </Card>
+          </SplideSlide>
+        ))}
+      </Splide>
+    </Container>
   );
 }
 
-const Wrapper = styled.div`
+const Container = styled.div`
   margin: 4rem 0;
 `;
 
