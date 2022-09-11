@@ -10,11 +10,11 @@ const Cuisine = () => {
   // Using useParams here is to get parms url dynamically
   const params = useParams();
 
-  // The name parameter here is used to get the parmas from the url
-  const getCuisineData = async (name) => {
+  // The urlQuery parameter here is used to get the parmas from the url
+  const getCuisineData = async (urlQuery) => {
     try {
       const resData = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${urlQuery}`
       );
       // const recipes = await resData.json();
       setCuisineData(resData.data.results);
@@ -25,7 +25,6 @@ const Cuisine = () => {
 
   useEffect(() => {
     getCuisineData(params.type);
-    console.log(params.type);
   }, [params.type]);
 
   return (
