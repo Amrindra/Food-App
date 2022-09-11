@@ -5,8 +5,12 @@ import styled from "styled-components";
 
 const Searchbar = () => {
   const [searchInput, setSearchInput] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
   return (
-    <FormInput>
+    <FormInput onSubmit={handleSubmit}>
       <div>
         <FaSearch />
         <input
