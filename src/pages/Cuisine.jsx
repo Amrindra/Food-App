@@ -28,18 +28,18 @@ const Cuisine = () => {
   }, [params.type]);
 
   return (
-    <CuisineStyled>
+    <CuisineGridStyled>
       {cuisineData.map((item) => (
         <Card key={item.id}>
           <img src={item.image} alt={item.title} />
           <h4>{item.title}</h4>
         </Card>
       ))}
-    </CuisineStyled>
+    </CuisineGridStyled>
   );
 };
 
-const CuisineStyled = styled.div`
+const CuisineGridStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
