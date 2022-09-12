@@ -6,31 +6,34 @@ import styled from "styled-components";
 const Recipe = () => {
   const [recipeData, setRecipeData] = useState({});
   const [activeButton, setActiveButton] = useState("instructions");
-  const params = useParams();
+
+  let params = useParams();
 
   const checkLocalStorage = localStorage.getItem("recipe");
 
-  const getData = async () => {
-    if (checkLocalStorage) {
-      setRecipeData(JSON.parse(checkLocalStorage));
-    } else {
-      try {
-        const response = await fetch(
-          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
-        );
-        const resData = await response.json();
+  const getRecipesData = async () => {
+    // if (checkLocalStorage) {
+    //   setRecipeData(JSON.parse(checkLocalStorage));
+    // } else {
+    try {
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+      );
+      const resData = await response.json();
+      console.log(resData);
 
-        localStorage.setItem("recipe", JSON.stringify(resData));
-        setRecipeData(resData);
-        console.log(resData);
-      } catch (error) {
-        console.log(error);
-      }
+      // localStorage.setItem("recipe", JSON.stringify(resData));
+      setRecipeData(resData);
+    } catch (error) {
+      console.log(error);
     }
+    // }
   };
 
+  console.log(recipeData);
+
   useEffect(() => {
-    getData();
+    getRecipesData();
   }, [params.id]);
 
   return (

@@ -1,11 +1,11 @@
 import Pages from "./pages/Pages";
 import Category from "./components/Category";
-import Searchbar from "./components/Searchbar";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <Searchbar />
+      <Header />
       <Category />
       <Pages />
     </div>
