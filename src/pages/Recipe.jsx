@@ -44,25 +44,59 @@ const Recipe = () => {
       </div>
       <Info>
         <Button
+          // If the activeButton is set to instruction is true then apply "active style"
           className={activeButton === "instructions" && "active"}
           onClick={() => setActiveButton("instructions")}
         >
           Instructions
         </Button>
         <Button
+          // If the activeButton is set to ingredients is true then apply "active style"
           className={activeButton === "ingredients" && "active"}
           onClick={() => setActiveButton("ingredients")}
         >
           Ingredients
         </Button>
+
+        <div>
+          <h3 dangerouslySetInnerHTML={{ __html: recipeData.summary }}></h3>
+          <h3
+            dangerouslySetInnerHTML={{ __html: recipeData.instructions }}
+          ></h3>
+        </div>
+
+        <ul>
+          {recipeData.extendedIngredients.map((ingredient) => (
+            <li key={ingredient.id}>{ingredient.original}</li>
+          ))}
+        </ul>
+        {/* {activeButton === "instructions" && (
+          <div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
+              animi ullam voluptas et ex enim ab qui, corrupti dolorum
+              explicabo!
+            </p>
+          </div>
+        )}
+        {activeButton === "ingredients" && (
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
+          </ul>
+        )} */}
       </Info>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  margin: 10rem 0 5rem 0;
+  margin: 3rem 0 5rem 0;
   display: flex;
+  align-items: baseline;
 
   div {
     img {
@@ -75,12 +109,14 @@ const Wrapper = styled.div`
     color: white;
   }
 
-  h3 {
-    margin-bottom: 2rem;
+  p {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    font-size: 1.5rem;
   }
 
   ul {
-    margin-top: 2px;
+    margin-top: 2rem;
   }
 
   li {

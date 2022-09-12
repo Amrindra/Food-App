@@ -21,6 +21,7 @@ const Searchbar = () => {
           type="text"
           value={searchInput}
           onChange={(event) => setSearchInput(event.target.value)}
+          placeholder="Search"
         />
       </div>
     </FormInput>
