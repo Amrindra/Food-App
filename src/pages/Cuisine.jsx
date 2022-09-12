@@ -18,6 +18,7 @@ const Cuisine = () => {
       );
       // const recipes = await resData.json();
       setCuisineData(resData.data.results);
+      console.log(resData.data.results);
     } catch (error) {
       console.log(error);
     }

@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const Recipe = () => {
   const [recipeData, setRecipeData] = useState({});
+  const [activeButton, setActiveButton] = useState("instructions");
   const params = useParams();
 
   const checkLocalStorage = localStorage.getItem("recipe");
@@ -42,8 +43,18 @@ const Recipe = () => {
         />
       </div>
       <Info>
-        <Button>Instructions</Button>
-        <Button>Ingredients</Button>
+        <Button
+          className={activeButton === "instructions" && "active"}
+          onClick={() => setActiveButton("instructions")}
+        >
+          Instructions
+        </Button>
+        <Button
+          className={activeButton === "ingredients" && "active"}
+          onClick={() => setActiveButton("ingredients")}
+        >
+          Ingredients
+        </Button>
       </Info>
     </Wrapper>
   );
