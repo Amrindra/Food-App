@@ -30,10 +30,11 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
 `;
 
 const LogoWrapper = styled.div`
-  background-color: black;
+  background-color: var(--dark-color);
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -54,16 +55,20 @@ const SearchbarWrapper = styled.div`
 `;
 
 const CartWrapper = styled.div`
-  background-color: black;
+  background-color: var(--dark-color);
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   span {
     color: white;
+    position: absolute;
+    top: 0;
+    font-weight: bold;
   }
 
   svg {

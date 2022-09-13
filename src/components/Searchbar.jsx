@@ -53,7 +53,7 @@ const FormInput = styled.form`
     left: -1%;
     transform: translate(100%, -50%);
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     cursor: pointer;
   }
 `;
