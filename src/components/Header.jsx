@@ -10,9 +10,7 @@ const Header = () => {
     <HeaderContainer>
       <LogoWrapper>
         <Link to="/">
-          <Logo>
-            <FaPizzaSlice />
-          </Logo>
+          <Logo>FOOD</Logo>
         </Link>
       </LogoWrapper>
       <SearchbarWrapper>
@@ -45,13 +43,12 @@ const LogoWrapper = styled.div`
 
 const Logo = styled.div`
   color: white;
-  font-size: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
 `;
 
 const SearchbarWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* width: 40%; */
 `;
 
 const CartWrapper = styled.div`

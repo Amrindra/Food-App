@@ -16,7 +16,6 @@ const Searchbar = () => {
   return (
     <FormInput onSubmit={handleSubmit}>
       <div>
-        <FaSearch onClick={handleSubmit} />
         <input
           type="text"
           value={searchInput}
@@ -24,34 +23,30 @@ const Searchbar = () => {
           placeholder="Search"
         />
       </div>
+      <FaSearch onClick={handleSubmit} />
     </FormInput>
   );
 };
 
 const FormInput = styled.form`
-  margin: 0 20rem;
-
-  div {
-    width: 100%;
-    position: relative;
-  }
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: linear-gradient(35deg, #494949, #313131);
+  border-radius: 2rem;
+  padding: 1rem;
+  width: 100%;
+  gap: 3rem;
 
   input {
-    width: 100%;
     border: none;
-    background: linear-gradient(35deg, #494949, #313131);
     font-size: 1.5rem;
     color: white;
-    padding: 1rem 3rem;
-    border-radius: 2rem;
     outline: none;
+    background: none;
   }
 
   svg {
-    position: absolute;
-    top: 50%;
-    left: -1%;
-    transform: translate(100%, -50%);
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
