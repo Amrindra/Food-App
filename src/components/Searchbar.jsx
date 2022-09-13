@@ -10,9 +10,14 @@ const Searchbar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // This navigate is used to navigate the user to the page where they search for in the search bar section
-    navigate(`/searchResult/${searchInput}`);
+    if (searchInput) {
+      // This navigate is used to navigate the user to the page where they search for in the search bar section
+      navigate(`/searchResult/${searchInput}`);
+    } else {
+      alert("Please type any category in order to search!");
+    }
   };
+
   return (
     <FormInput onSubmit={handleSubmit}>
       <div>
