@@ -39,27 +39,27 @@ function Veggetable() {
       <Splide
         options={{
           perPage: 4,
-          gap: "3rem",
+          gap: "2rem",
           drag: "free",
           pagination: false,
         }}
       >
         {veggie.map((item) => (
           <SplideSlide key={item.id}>
-            <Link to={"/recipe/" + item.id}>
-              <Card>
-                <ImageWrapper>
-                  <img src={item.image} alt={item.title} />
-                </ImageWrapper>
-                <CardBody>
-                  <p>{item.title}</p>
-                  <div>
-                    <span>{item.pricePerServing}</span>
-                    <button>Add to cart</button>
-                  </div>
-                </CardBody>
-              </Card>
-            </Link>
+            {/* <Link to={"/recipe/" + item.id}> */}
+            <Card>
+              <ImageWrapper>
+                <img src={item.image} alt={item.title} />
+              </ImageWrapper>
+              <CardBody>
+                <p>{item.title}</p>
+                <div>
+                  <span>${item.pricePerServing}</span>
+                  <button>Add to cart</button>
+                </div>
+              </CardBody>
+            </Card>
+            {/* </Link> */}
           </SplideSlide>
         ))}
       </Splide>
@@ -87,15 +87,44 @@ const Card = styled.div`
     height: 100%;
     object-fit: cover;
   }
-
-  p {
-    color: white;
-    font-weight: 600;
-    font-size: 1.5rem;
-  }
 `;
 
 const ImageWrapper = styled.div``;
-const CardBody = styled.div``;
+const CardBody = styled.div`
+  padding-bottom: 2rem;
+
+  p {
+    color: #313131;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-top: 2rem;
+    gap: 3rem;
+
+    span {
+      font-weight: bold;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      color: #313131;
+      background: white;
+      border: 2px solid black;
+      font-weight: 600;
+      font-weight: bold;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+`;
 
 export default Veggetable;
