@@ -61,7 +61,7 @@ const Recipe = () => {
           Ingredients
         </Button>
 
-        <div>
+        {/* <div>
           <h3 dangerouslySetInnerHTML={{ __html: recipeData.summary }}></h3>
           <h3
             dangerouslySetInnerHTML={{ __html: recipeData.instructions }}
@@ -72,8 +72,8 @@ const Recipe = () => {
           {recipeData.extendedIngredients.map((ingredient) => (
             <li key={ingredient.id}>{ingredient.original}</li>
           ))}
-        </ul>
-        {/* {activeButton === "instructions" && (
+        </ul> */}
+        {activeButton === "instructions" && (
           <div>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
             <p>
@@ -90,7 +90,7 @@ const Recipe = () => {
             <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
             <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
           </ul>
-        )} */}
+        )}
       </Info>
     </Wrapper>
   );

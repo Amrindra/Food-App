@@ -50,17 +50,16 @@ function Popular() {
       >
         {popularData.map((item) => (
           <SplideSlide key={item.id}>
-            {/* <Link to={"/recipe/" + item.id}> */}
             <Card>
-              <img src={item.image} alt={item.title} />
-              <p>{item.title}</p>
+              <Link to={"/recipe/" + item.id}>
+                <img src={item.image} alt={item.title} />
+                <p>{item.title}</p>
+              </Link>
               <CardInfo>
-                <span>$44.00</span>
+                <span>${item.pricePerServing}</span>
                 <button>Add to cart</button>
               </CardInfo>
-              <Gradient />
             </Card>
-            {/* </Link> */}
           </SplideSlide>
         ))}
       </Splide>
@@ -80,7 +79,7 @@ const Card = styled.div`
 
   img {
     border-radius: 2rem;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     width: 100%;
     height: 100%;
@@ -89,7 +88,7 @@ const Card = styled.div`
 
   p {
     position: absolute;
-    z-index: 1;
+    /* z-index: 1; */
     left: 50%;
     bottom: 10%;
     transform: translate(-50%, 0%);
@@ -103,7 +102,7 @@ const Card = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(243, 239, 241, 0.4);
+    /* background-color: rgba(243, 239, 241, 0.4); */
   }
 `;
 
@@ -115,7 +114,7 @@ const CardInfo = styled.div`
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  z-index: 9;
+  /* z-index: 9; */
 
   span {
     color: white;
@@ -136,14 +135,6 @@ const CardInfo = styled.div`
       cursor: pointer;
     }
   }
-`;
-
-const Gradient = styled.div`
-  z-index: 2;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 `;
 
 export default Popular;
