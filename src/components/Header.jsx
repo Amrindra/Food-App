@@ -2,17 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Searchbar from "./Searchbar";
-import { FaPizzaSlice } from "react-icons/fa";
 import { GiShoppingCart } from "react-icons/gi";
 
 const Header = () => {
   return (
     <HeaderContainer>
-      <LogoWrapper>
-        <Link to="/">
+      <Link to="/">
+        <LogoWrapper>
           <Logo>FOOD</Logo>
-        </Link>
-      </LogoWrapper>
+        </LogoWrapper>
+      </Link>
       <SearchbarWrapper>
         <Searchbar />
       </SearchbarWrapper>

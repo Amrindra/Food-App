@@ -15,7 +15,7 @@ const Category = () => {
 
         <CategoryLink to="/cuisine/vietnamese">
           <GiChopsticks />
-          <h4>Japanese</h4>
+          <h4>Vietnames</h4>
         </CategoryLink>
 
         <CategoryLink to="/cuisine/italian">

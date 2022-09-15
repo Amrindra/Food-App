@@ -120,6 +120,7 @@ const CardBody = styled.div`
       border: 2px solid black;
       font-weight: 600;
       font-weight: bold;
+      text-transform: capitalize;
 
       &:hover {
         cursor: pointer;

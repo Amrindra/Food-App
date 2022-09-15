@@ -68,70 +68,60 @@ function Popular() {
 }
 
 const Container = styled.div`
-  margin: 4rem 0;
+  /* margin: 4rem 0; */
 `;
 
 const Card = styled.div`
-  min-height: 25rem;
-  border-radius: 2rem;
+  min-height: 20rem;
+  /* border-radius: 2rem; */
   overflow: hidden;
-  position: relative;
+  /* border: 1px solid gray; */
+  background-color: rgba(243, 239, 241, 0.9);
 
   img {
-    border-radius: 2rem;
-    /* position: absolute; */
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
   p {
-    position: absolute;
-    /* z-index: 1; */
-    left: 50%;
-    bottom: 10%;
-    transform: translate(-50%, 0%);
     color: #411530;
     width: 90%;
-    border-radius: 1rem;
     text-align: center;
     font-weight: bold;
     font-size: 1.5rem;
-    padding: 0.5rem 0 5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: rgba(243, 239, 241, 0.4); */
+    width: 100%;
+    padding-top: 1rem;
+
+    /* */
   }
 `;
 
 const CardInfo = styled.div`
-  position: absolute;
-  bottom: 12%;
-  left: 12%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  /* z-index: 9; */
+  margin: 2rem;
 
   span {
-    color: white;
+    color: var(--dark-color);
     font-size: 1.4rem;
     font-weight: bold;
   }
 
   button {
-    color: white;
+    color: var(--dark-color);
     background: none;
     font-size: 1.1rem;
     font-weight: bold;
     padding: 0.3rem 1.5rem;
     border-radius: 1rem;
+    text-transform: capitalize;
 
     &:hover {
       background: var(--dark-color);
+      color: white;
       cursor: pointer;
     }
   }
