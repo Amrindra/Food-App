@@ -28,6 +28,9 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
+  position: sticky;
+  top: 2%;
+  z-index: 999;
 `;
 
 const LogoWrapper = styled.div`

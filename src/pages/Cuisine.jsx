@@ -36,6 +36,7 @@ const Cuisine = () => {
             <img src={item.image} alt={item.title} />
             <h4>{item.title}</h4>
           </Link>
+          <button>Order Me</button>
         </Card>
       ))}
     </CuisineGridStyled>
@@ -50,6 +51,7 @@ const CuisineGridStyled = styled.div`
 `;
 
 const Card = styled.div`
+  position: relative;
   img {
     width: 100%;
     border-radius: 1rem;
@@ -63,6 +65,31 @@ const Card = styled.div`
     text-align: center;
     padding: 1rem;
     font-size: 1.5rem;
+  }
+
+  button {
+    border: none;
+    padding: 0.61rem;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 35%;
+    text-align: center;
+    background-color: rgba(162, 162, 162, 0.4);
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    opacity: 0;
+  }
+
+  &:hover {
+    button {
+      opacity: 100;
+      cursor: pointer;
+      background-color: var(--dark-color);
+    }
   }
 `;
 
