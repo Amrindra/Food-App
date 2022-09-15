@@ -50,17 +50,17 @@ function Popular() {
       >
         {popularData.map((item) => (
           <SplideSlide key={item.id}>
-            <Link to={"/recipe/" + item.id}>
-              <Card>
-                <img src={item.image} alt={item.title} />
-                <p>{item.title}</p>
-                <CardInfo>
-                  <span>$44.00</span>
-                  <button>Add to cart</button>
-                </CardInfo>
-                <Gradient />
-              </Card>
-            </Link>
+            {/* <Link to={"/recipe/" + item.id}> */}
+            <Card>
+              <img src={item.image} alt={item.title} />
+              <p>{item.title}</p>
+              <CardInfo>
+                <span>$44.00</span>
+                <button>Add to cart</button>
+              </CardInfo>
+              <Gradient />
+            </Card>
+            {/* </Link> */}
           </SplideSlide>
         ))}
       </Splide>
@@ -89,17 +89,17 @@ const Card = styled.div`
 
   p {
     position: absolute;
-    z-index: 10;
+    z-index: 1;
     left: 50%;
     bottom: 10%;
     transform: translate(-50%, 0%);
-    color: white;
+    color: #411530;
     width: 90%;
     border-radius: 1rem;
     text-align: center;
     font-weight: bold;
     font-size: 1.5rem;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,6 +109,33 @@ const Card = styled.div`
 
 const CardInfo = styled.div`
   position: absolute;
+  bottom: 12%;
+  left: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  z-index: 9;
+
+  span {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  button {
+    color: white;
+    background: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.3rem 1.5rem;
+    border-radius: 1rem;
+
+    &:hover {
+      background: var(--dark-color);
+      cursor: pointer;
+    }
+  }
 `;
 
 const Gradient = styled.div`
