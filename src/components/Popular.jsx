@@ -48,12 +48,16 @@ function Popular() {
           pagination: false,
         }}
       >
-        {popularData.map((recipe) => (
-          <SplideSlide key={recipe.id}>
-            <Link to={"/recipe/" + recipe.id}>
+        {popularData.map((item) => (
+          <SplideSlide key={item.id}>
+            <Link to={"/recipe/" + item.id}>
               <Card>
-                <p>{recipe.title}</p>
-                <img src={recipe.image} alt={recipe.title} />
+                <img src={item.image} alt={item.title} />
+                <p>{item.title}</p>
+                <CardInfo>
+                  <span>$44.00</span>
+                  <button>Add to cart</button>
+                </CardInfo>
                 <Gradient />
               </Card>
             </Link>
@@ -87,18 +91,24 @@ const Card = styled.div`
     position: absolute;
     z-index: 10;
     left: 50%;
-    bottom: 0%;
+    bottom: 10%;
     transform: translate(-50%, 0%);
     color: white;
-    width: 100%;
+    width: 90%;
+    border-radius: 1rem;
     text-align: center;
-    font-weight: 600;
+    font-weight: bold;
     font-size: 1.5rem;
-    height: 40%;
+    padding: 0.5rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(243, 239, 241, 0.4);
   }
+`;
+
+const CardInfo = styled.div`
+  position: absolute;
 `;
 
 const Gradient = styled.div`
@@ -106,7 +116,7 @@ const Gradient = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
 `;
 
 export default Popular;
