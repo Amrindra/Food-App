@@ -9,39 +9,43 @@ const Recipe = () => {
 
   let params = useParams();
 
-  const checkLocalStorage = localStorage.getItem("recipe");
+  const getPopularAPIData = async () => {
+    // Checking local storage in the browser
+    const checkLocalStorage = localStorage.getItem("recipe");
 
-  const getRecipesData = async () => {
-    // if (checkLocalStorage) {
-    //   setRecipeData(JSON.parse(checkLocalStorage));
-    // } else {
-    try {
-      const response = await fetch(
-        `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
-      );
-      const resData = await response.json();
-      console.log(resData);
+    // checking if there is any items in the local storage which is in the browser so we don't have to fetch the API
+    // In the localStorage we can only store string that's why we used .parse
+    if (checkLocalStorage) {
+      // setRecipeData(JSON.parse(checkLocalStorage));
+    } else {
+      try {
+        const apiRes = await fetch(
+          `https://api.spoonacular.com/recipes/${params.id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+        );
+        const data = await apiRes.json();
 
-      // localStorage.setItem("recipe", JSON.stringify(resData));
-      setRecipeData(resData);
-    } catch (error) {
-      console.log(error);
+        // Converting data JS object to JSON
+        // localStorage.setItem("recipe", JSON.stringify(data.recipes));
+        setRecipeData(data.recipes);
+        console.log(data.recipes);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    // }
   };
 
-  console.log(recipeData);
+  console.log("Recipedata" + recipeData);
 
   useEffect(() => {
-    getRecipesData();
-  }, [params.id]);
+    getPopularAPIData();
+  }, []);
 
   return (
     <Wrapper>
       <div>
         <h3>title</h3>
         <img
-          src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg"
+          src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
           alt=""
         />
       </div>
@@ -61,26 +65,14 @@ const Recipe = () => {
           Ingredients
         </Button>
 
-        {/* <div>
-          <h3 dangerouslySetInnerHTML={{ __html: recipeData.summary }}></h3>
-          <h3
-            dangerouslySetInnerHTML={{ __html: recipeData.instructions }}
-          ></h3>
-        </div>
-
-        <ul>
-          {recipeData.extendedIngredients.map((ingredient) => (
-            <li key={ingredient.id}>{ingredient.original}</li>
-          ))}
-        </ul> */}
         {activeButton === "instructions" && (
           <div>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            <p>
+            <p></p>
+            {/* <p>
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat
               animi ullam voluptas et ex enim ab qui, corrupti dolorum
               explicabo!
-            </p>
+            </p> */}
           </div>
         )}
         {activeButton === "ingredients" && (
@@ -91,6 +83,10 @@ const Recipe = () => {
             <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
           </ul>
         )}
+
+        {/* {recipeData.map((item) => (
+          <p>{item.imageType}</p>
+        ))} */}
       </Info>
     </Wrapper>
   );

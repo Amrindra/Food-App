@@ -24,6 +24,8 @@ const Cuisine = () => {
     }
   };
 
+  console.log("Cuisine: " + cuisineData);
+
   useEffect(() => {
     getCuisineData(params.type);
   }, [params.type]);
@@ -36,6 +38,7 @@ const Cuisine = () => {
             <img src={item.image} alt={item.title} />
             <h4>{item.title}</h4>
           </Link>
+          <span>$12.00 Fixed Price</span>
           <button>Order Me</button>
         </Card>
       ))}
@@ -52,6 +55,8 @@ const CuisineGridStyled = styled.div`
 
 const Card = styled.div`
   position: relative;
+  text-align: center;
+
   img {
     width: 100%;
     border-radius: 1rem;
@@ -84,11 +89,19 @@ const Card = styled.div`
     opacity: 0;
   }
 
+  span {
+    opacity: 0;
+  }
+
   &:hover {
     button {
       opacity: 100;
       cursor: pointer;
       background-color: var(--dark-color);
+    }
+
+    span {
+      opacity: 100;
     }
   }
 `;
