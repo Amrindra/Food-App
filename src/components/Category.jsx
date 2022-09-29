@@ -37,6 +37,9 @@ const CategoryListItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: 50px;
+  z-index: 999;
 `;
 
 const Wrapper = styled.div`
