@@ -61,9 +61,7 @@ function Popular() {
               </Link>
               <CardInfo>
                 <span>${item.pricePerServing}</span>
-                <button onClick={() => addToCart(popularData)}>
-                  Add to cart
-                </button>
+                <button onClick={() => addToCart(item)}>Add to cart</button>
               </CardInfo>
             </Card>
           </SplideSlide>
