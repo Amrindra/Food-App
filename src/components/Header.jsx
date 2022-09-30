@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Searchbar from "./Searchbar";
 import { GiShoppingCart } from "react-icons/gi";
+import { useContext } from "react";
+import { CartContext } from "../context/CartStateProvider";
 
 const Header = () => {
+  const { cartItems } = useContext(CartContext);
   return (
     <HeaderContainer>
       <Link to="/">
@@ -12,13 +15,17 @@ const Header = () => {
           <Logo>FOOD</Logo>
         </LogoWrapper>
       </Link>
+
       <SearchbarWrapper>
         <Searchbar />
       </SearchbarWrapper>
-      <CartWrapper>
-        <span>0</span>
-        <GiShoppingCart />
-      </CartWrapper>
+
+      <Link to="/cart">
+        <CartWrapper>
+          <span>{cartItems ? cartItems.length : 0}</span>
+          <GiShoppingCart />
+        </CartWrapper>
+      </Link>
     </HeaderContainer>
   );
 };
@@ -62,6 +69,7 @@ const CartWrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  z-index: 999;
 
   span {
     color: white;

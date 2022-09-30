@@ -39,7 +39,7 @@ const CategoryListItem = styled.div`
   align-items: center;
   position: sticky;
   top: 50px;
-  z-index: 999;
+  z-index: 99;
 `;
 
 const Wrapper = styled.div`
