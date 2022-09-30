@@ -3,9 +3,9 @@ import { useReducer } from "react";
 import { createContext } from "react";
 import CartReducer from "./CartReducer";
 
-const CartContext = createContext();
+export const CartContext = createContext();
 
-function CartState({ children }) {
+function CartStateProvider({ children }) {
   const initialState = {
     cartItems: [],
   };
@@ -29,4 +29,4 @@ function CartState({ children }) {
   );
 }
 
-export default CartState;
+export default CartStateProvider;

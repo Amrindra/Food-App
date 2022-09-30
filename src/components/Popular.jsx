@@ -3,9 +3,13 @@ import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartStateProvider";
 
 function Popular() {
   const [popularData, setPopularData] = useState([]);
+
+  const { addToCart } = useContext(CartContext);
 
   const getPopularAPIData = async () => {
     // Checking local storage in the browser
@@ -57,7 +61,9 @@ function Popular() {
               </Link>
               <CardInfo>
                 <span>${item.pricePerServing}</span>
-                <button>Add to cart</button>
+                <button onClick={() => addToCart(popularData)}>
+                  Add to cart
+                </button>
               </CardInfo>
             </Card>
           </SplideSlide>
