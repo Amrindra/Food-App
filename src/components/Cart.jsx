@@ -13,32 +13,39 @@ const Cart = () => {
 
   console.log(cartItems);
   return (
-    <TableContainer>
-      {cartItems.map((item) => (
-        <Table>
-          <tr>
-            <th>Product</th>
-            <th>Prices</th>
-            <th>QTY</th>
-            <th>Total</th>
-          </tr>
-          <tr>
-            <td>
-              <img src={item.image} alt="" />
-              <Title>{item.title}</Title>
-              <p> ID: {item.id}</p>
-            </td>
-            <td>
-              <p>${item.pricePerServing}</p>
-            </td>
-            <td>{cartItems.length}</td>
-            <td>{subtotal}</td>
-          </tr>
-        </Table>
-      ))}
-
-      <Subtotal>Subtotal: ${subtotal}</Subtotal>
-    </TableContainer>
+    <>
+      {cartItems.length === 0 ? (
+        <div>
+          <h3>Your cart is empty</h3>
+        </div>
+      ) : (
+        <TableContainer>
+          {cartItems.map((item) => (
+            <Table>
+              <tr>
+                <th>Product</th>
+                <th>Prices</th>
+                <th>QTY</th>
+                <th>Total</th>
+              </tr>
+              <tr>
+                <td>
+                  <img src={item.image} alt="" />
+                  <Title>{item.title}</Title>
+                  <p> ID: {item.id}</p>
+                </td>
+                <td>
+                  <p>${item.pricePerServing}</p>
+                </td>
+                <td>{cartItems.length}</td>
+                <td>{subtotal}</td>
+              </tr>
+            </Table>
+          ))}
+          <Subtotal>Subtotal: ${subtotal}</Subtotal>
+        </TableContainer>
+      )}
+    </>
   );
 };
 
