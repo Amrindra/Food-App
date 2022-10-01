@@ -14,9 +14,9 @@ const Cart = () => {
   return (
     <>
       {cartItems.length === 0 ? (
-        <div>
-          <h3>Your cart is empty</h3>
-        </div>
+        <EmptyCart>
+          <h3>Your cart is empty!</h3>
+        </EmptyCart>
       ) : (
         <TableContainer>
           <Table>
@@ -29,9 +29,10 @@ const Cart = () => {
             {cartItems.map((item) => (
               <Tr key={item.id}>
                 <Td>
-                  <img src={item.image} alt="" />
+                  <span>X</span>
+                  <img src={item.image} alt={item.title} />
                   <Title>{item.title}</Title>
-                  <p> ID: {item.id}</p>
+                  <p>ID: {item.id}</p>
                 </Td>
                 <td>
                   <p>${item.pricePerServing}</p>
@@ -43,7 +44,7 @@ const Cart = () => {
                     <span>+</span>
                   </QtyWrapper>
                 </td>
-                <td>${subtotal}</td>
+                <td>${item.pricePerServing * cartItems.length}</td>
               </Tr>
             ))}
           </Table>
@@ -99,12 +100,25 @@ const QtyWrapper = styled.div`
 
 const Td = styled.td`
   max-width: 200px;
+  position: relative;
+
+  span {
+    position: absolute;
+    z-index: 9;
+    font-weight: bold;
+    color: red;
+    left: 160px;
+    top: -4px;
+  }
 `;
 
 const Title = styled.h3`
   font-size: 1.5rem;
 `;
-const Price = styled.p``;
+const EmptyCart = styled.div`
+  text-align: center;
+  margin-top: 3rem;
+`;
 
 const Subtotal = styled.p`
   text-align: end;
