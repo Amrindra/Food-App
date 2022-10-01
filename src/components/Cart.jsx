@@ -11,7 +11,6 @@ const Cart = () => {
     0
   );
 
-  console.log(cartItems);
   return (
     <>
       {cartItems.length === 0 ? (
@@ -20,28 +19,34 @@ const Cart = () => {
         </div>
       ) : (
         <TableContainer>
-          {cartItems.map((item) => (
-            <Table>
-              <tr>
-                <th>Product</th>
-                <th>Prices</th>
-                <th>QTY</th>
-                <th>Total</th>
-              </tr>
-              <tr>
-                <td>
+          <Table>
+            <tr>
+              <th>Product</th>
+              <th>Prices</th>
+              <th>QTY</th>
+              <th>Total</th>
+            </tr>
+            {cartItems.map((item) => (
+              <Tr key={item.id}>
+                <Td>
                   <img src={item.image} alt="" />
                   <Title>{item.title}</Title>
                   <p> ID: {item.id}</p>
-                </td>
+                </Td>
                 <td>
                   <p>${item.pricePerServing}</p>
                 </td>
-                <td>{cartItems.length}</td>
-                <td>{subtotal}</td>
-              </tr>
-            </Table>
-          ))}
+                <td>
+                  <QtyWrapper>
+                    <span>-</span>
+                    <p>{cartItems.length}</p>
+                    <span>+</span>
+                  </QtyWrapper>
+                </td>
+                <td>${subtotal}</td>
+              </Tr>
+            ))}
+          </Table>
           <Subtotal>Subtotal: ${subtotal}</Subtotal>
         </TableContainer>
       )}
@@ -73,9 +78,29 @@ const Table = styled.table`
   }
 `;
 
-const Tr = styled.tr``;
-const Th = styled.th``;
-const Td = styled.td``;
+const Tr = styled.tr`
+  /* margin-top: 3rem; */
+`;
+
+const QtyWrapper = styled.div`
+  display: flex;
+  align-items: baseline;
+
+  span {
+    /* color: white; */
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  p {
+    padding: 0 0.5rem 0 0.5rem;
+  }
+`;
+
+const Td = styled.td`
+  max-width: 200px;
+`;
+
 const Title = styled.h3`
   font-size: 1.5rem;
 `;
@@ -83,6 +108,7 @@ const Price = styled.p``;
 
 const Subtotal = styled.p`
   text-align: end;
+  margin-top: 3rem;
 `;
 
 export default Cart;
