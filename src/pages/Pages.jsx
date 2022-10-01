@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Cuisine from "./Cuisine";
 import SearchResult from "../components/SearchResult";
 import SingleItem from "./SingleItem";
-import Cart from "../components/Cart";
+import Cart from "./Cart";
 
 function Pages() {
   return (

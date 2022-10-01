@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { CartContext } from "../context/CartStateProvider";
 
 const Cart = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, removeItem, addToCart } = useContext(CartContext);
 
   const subtotal = cartItems.reduce(
     (amount, item) => item.pricePerServing + amount,
@@ -29,7 +29,7 @@ const Cart = () => {
             {cartItems.map((item) => (
               <Tr key={item.id}>
                 <Td>
-                  <span>X</span>
+                  <span onClick={() => removeItem(item.id)}>X</span>
                   <img src={item.image} alt={item.title} />
                   <Title>{item.title}</Title>
                   <p>ID: {item.id}</p>
@@ -44,11 +44,11 @@ const Cart = () => {
                     <span>+</span>
                   </QtyWrapper>
                 </td>
-                <td>${item.pricePerServing * cartItems.length}</td>
+                <td>${(item.pricePerServing * cartItems.length).toFixed(2)}</td>
               </Tr>
             ))}
           </Table>
-          <Subtotal>Subtotal: ${subtotal}</Subtotal>
+          <Subtotal>Subtotal: ${subtotal.toFixed(2)}</Subtotal>
         </TableContainer>
       )}
     </>
@@ -109,6 +109,7 @@ const Td = styled.td`
     color: red;
     left: 160px;
     top: -4px;
+    cursor: pointer;
   }
 `;
 
@@ -123,6 +124,8 @@ const EmptyCart = styled.div`
 const Subtotal = styled.p`
   text-align: end;
   margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-decoration: underline;
 `;
 
 export default Cart;
