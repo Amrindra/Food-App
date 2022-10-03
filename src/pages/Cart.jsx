@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { CartContext } from "../context/CartStateProvider";
 
 const Cart = () => {
-  const { cartItems, removeItem, addToCart } = useContext(CartContext);
+  const { cartItems, removeItem } = useContext(CartContext);
 
   const subtotal = cartItems.reduce(
     (amount, item) => item.pricePerServing + amount,
@@ -40,7 +40,7 @@ const Cart = () => {
                 <td>
                   <QtyWrapper>
                     <span>-</span>
-                    <p>{cartItems.length}</p>
+                    <p>{item.qty}</p>
                     <span>+</span>
                   </QtyWrapper>
                 </td>
