@@ -44,7 +44,7 @@ const Cart = () => {
                     <span>+</span>
                   </QtyWrapper>
                 </td>
-                <td>${(item.pricePerServing * cartItems.length).toFixed(2)}</td>
+                <td>${(item.pricePerServing * item.qty).toFixed(2)}</td>
               </Tr>
             ))}
           </Table>

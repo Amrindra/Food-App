@@ -8,8 +8,8 @@ const CartReducer = (state, action) => {
         cartItems: [...state.cartItems, { ...action.payload, qty: 1 }],
       };
 
-    // const newItem = action.payload;
-    // const existItem = state.cartItems.find((item) => item.id === newItem.id);
+      const newItem = action.payload;
+      const existItem = state.cartItems.find((item) => item.id === newItem.id);
 
     // const newCart = existItem
     //   ? state.cartItems.map((item) =>
