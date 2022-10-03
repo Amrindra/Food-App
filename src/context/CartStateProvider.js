@@ -20,9 +20,13 @@ function CartStateProvider({ children }) {
     dispatch({ type: "REMOVE_FROM_CART", payload: id });
   };
 
+  const chnageQty = (id) => {
+    dispatch({ type: "CHANGE_CART_QTY", payload: id });
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems: state.cartItems, addToCart, removeItem }}
+      value={{ cartItems: state.cartItems, addToCart, removeItem, chnageQty }}
     >
       {children}
     </CartContext.Provider>
