@@ -3,9 +3,13 @@ import styled from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartStateProvider";
 
 function Veggetable() {
   const [veggie, setVeggie] = useState([]);
+
+  const { addToCart } = useContext(CartContext);
 
   const getVeggieData = async () => {
     // Checking local storage in the browser
@@ -46,20 +50,20 @@ function Veggetable() {
       >
         {veggie.map((item) => (
           <SplideSlide key={item.id}>
-            <Link to={"/recipe/" + item.id}>
-              <Card>
+            <Card>
+              <Link to={"/recipe/" + item.id}>
                 <ImageWrapper>
                   <img src={item.image} alt={item.title} />
                 </ImageWrapper>
-                <CardBody>
-                  <p>{item.title}</p>
-                  <div>
-                    <span>${item.pricePerServing}</span>
-                    <button>Add to cart</button>
-                  </div>
-                </CardBody>
-              </Card>
-            </Link>
+              </Link>
+              <CardBody>
+                <p>{item.title}</p>
+                <div>
+                  <span>${item.pricePerServing}</span>
+                  <button onClick={() => addToCart(item)}>Add to cart</button>
+                </div>
+              </CardBody>
+            </Card>
           </SplideSlide>
         ))}
       </Splide>
