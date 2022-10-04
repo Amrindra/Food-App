@@ -73,6 +73,7 @@ const Container = styled.div`
   h3 {
     text-transform: capitalize;
     text-align: end;
+    margin: 3rem 3rem;
   }
 `;
 

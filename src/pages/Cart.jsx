@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../context/CartStateProvider";
 
@@ -20,6 +21,9 @@ const Cart = () => {
       {cartItems?.length === 0 ? (
         <EmptyCart>
           <h3>Your cart is empty!</h3>
+          <Link to="/">
+            <button>Continue Shopping...</button>
+          </Link>
         </EmptyCart>
       ) : (
         <TableContainer>
@@ -43,7 +47,7 @@ const Cart = () => {
                 </td>
                 <td>
                   <QtyWrapper>
-                    <span
+                    <button
                       onClick={
                         item.qty > 1
                           ? () => decreaseQty(item)
@@ -51,9 +55,9 @@ const Cart = () => {
                       }
                     >
                       -
-                    </span>
+                    </button>
                     <p>{item.qty}</p>
-                    <span onClick={() => increaseQty(item)}>+</span>
+                    <button onClick={() => increaseQty(item)}>+</button>
                   </QtyWrapper>
                 </td>
                 <td>${(item.pricePerServing * item.qty).toFixed(2)}</td>
@@ -97,12 +101,22 @@ const Tr = styled.tr`
 
 const QtyWrapper = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  align-self: center;
 
-  span {
-    /* color: white; */
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 500;
     cursor: pointer;
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+    border-radius: 50%;
+    border: none;
+    background-color: black;
+    color: white;
   }
 
   p {
@@ -141,6 +155,21 @@ const Title = styled.h3`
 const EmptyCart = styled.div`
   text-align: center;
   margin-top: 3rem;
+
+  button {
+    margin-top: 5rem;
+    font-size: 1.5rem;
+    background-color: lightgray;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: black;
+      color: white;
+    }
+  }
 `;
 
 const Subtotal = styled.p`

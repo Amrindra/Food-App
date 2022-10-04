@@ -5,13 +5,11 @@ import Veggetable from "../components/Veggetable";
 
 function Homepage() {
   return (
-    <>
-      <main>
-        <Banner />
-        <Popular />
-        <Veggetable />
-      </main>
-    </>
+    <main>
+      <Banner />
+      <Popular />
+      <Veggetable />
+    </main>
   );
 }
 

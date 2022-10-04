@@ -72,7 +72,9 @@ function Popular() {
 }
 
 const Container = styled.div`
-  /* margin: 4rem 0; */
+  h3 {
+    margin: 3rem 3rem;
+  }
 `;
 
 const Card = styled.div`
