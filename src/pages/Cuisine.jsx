@@ -59,6 +59,7 @@ const CuisineGridStyled = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
   margin-top: 4rem;
+  margin-bottom: 2rem;
 `;
 
 const Card = styled.div`

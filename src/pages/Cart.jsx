@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -35,11 +34,11 @@ const Cart = () => {
               <th>Total</th>
             </tr>
             {cartItems?.map((item) => (
-              <Tr key={item.id}>
+              <tr key={item.id}>
                 <Td>
                   <button onClick={() => removeItem(item.id)}>X</button>
                   <img src={item.image} alt={item.title} />
-                  <Title>{item.title}</Title>
+                  <h3>{item.title}</h3>
                   <p>ID: {item.id}</p>
                 </Td>
                 <td>
@@ -61,7 +60,7 @@ const Cart = () => {
                   </QtyWrapper>
                 </td>
                 <td>${(item.pricePerServing * item.qty).toFixed(2)}</td>
-              </Tr>
+              </tr>
             ))}
           </Table>
           <Subtotal>Subtotal: ${subtotal.toFixed(2)}</Subtotal>
@@ -73,6 +72,7 @@ const Cart = () => {
 
 const TableContainer = styled.div`
   margin-top: 2rem;
+  height: 100vh;
 `;
 
 const Table = styled.table`
@@ -93,10 +93,26 @@ const Table = styled.table`
   img {
     width: 10rem;
   }
-`;
 
-const Tr = styled.tr`
-  /* margin-top: 3rem; */
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  @media only screen and (max-width: 580px) {
+    td {
+      padding: 4px;
+    }
+
+    img {
+      width: 7rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+      line-height: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
 `;
 
 const QtyWrapper = styled.div`
@@ -122,6 +138,18 @@ const QtyWrapper = styled.div`
   p {
     padding: 0 0.5rem 0 0.5rem;
   }
+
+  @media only screen and (max-width: 580px) {
+    button {
+      background: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    p {
+      padding: 0 0.3rem 0 0.3rem;
+    }
+  }
 `;
 
 const Td = styled.td`
@@ -132,7 +160,6 @@ const Td = styled.td`
     position: absolute;
     z-index: 9;
     font-weight: bold;
-
     left: 160px;
     top: -4px;
     width: 20px;
@@ -144,14 +171,17 @@ const Td = styled.td`
 
     &:hover {
       cursor: pointer;
-      /* background-color: white; */
+    }
+  }
+
+  @media only screen and (max-width: 580px) {
+    button {
+      left: 105px;
+      top: -7px;
     }
   }
 `;
 
-const Title = styled.h3`
-  font-size: 1.5rem;
-`;
 const EmptyCart = styled.div`
   text-align: center;
   margin-top: 3rem;
@@ -177,6 +207,7 @@ const Subtotal = styled.p`
   margin-top: 3rem;
   margin-bottom: 2rem;
   text-decoration: underline;
+  height: 20vh;
 `;
 
 export default Cart;
