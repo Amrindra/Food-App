@@ -22,6 +22,11 @@ const BannerStyled = styled.div`
     border-radius: 1rem;
     margin-top: 3rem;
   }
+
+  @media only screen and (max-width: 580px) {
+    img {
+    }
+  }
 `;
 
 export default Banner;

@@ -5,6 +5,7 @@ import Searchbar from "./Searchbar";
 import { GiShoppingCart } from "react-icons/gi";
 import { useContext } from "react";
 import { CartContext } from "../context/CartStateProvider";
+// import { mobile, tablet } from "../../responsive";
 
 const Header = () => {
   const { cartItems } = useContext(CartContext);

@@ -42,6 +42,17 @@ function Veggetable() {
       {/* Splide is a React library for Images slider */}
       <Splide
         options={{
+          breakpoints: {
+            1024: {
+              perPage: 3,
+            },
+            767: {
+              perPage: 2,
+            },
+            640: {
+              perPage: 1,
+            },
+          },
           perPage: 4,
           gap: "2rem",
           drag: "free",

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+// import { mobile, tablet } from "../../responsive";
 
 const Searchbar = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -55,6 +56,10 @@ const FormInput = styled.form`
     color: white;
     font-size: 1.2rem;
     cursor: pointer;
+  }
+
+  @media only screen and (max-width: var(--mobile-size)) {
+    /* padding: 0.5rem; */
   }
 `;
 

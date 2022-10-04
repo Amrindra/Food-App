@@ -46,6 +46,17 @@ function Popular() {
       {/* Splide is a React library for Images slider */}
       <Splide
         options={{
+          breakpoints: {
+            1024: {
+              perPage: 3,
+            },
+            767: {
+              perPage: 2,
+            },
+            640: {
+              perPage: 1,
+            },
+          },
           perPage: 3,
           gap: "3rem",
           drag: "free",
@@ -79,9 +90,7 @@ const Container = styled.div`
 
 const Card = styled.div`
   min-height: 20rem;
-  /* border-radius: 2rem; */
   overflow: hidden;
-  /* border: 1px solid gray; */
   background-color: rgba(243, 239, 241, 0.9);
 
   img {
@@ -98,8 +107,9 @@ const Card = styled.div`
     font-size: 1.5rem;
     width: 100%;
     padding-top: 1rem;
+  }
 
-    /* */
+  @media only screen and (max-width: 580px) {
   }
 `;
 

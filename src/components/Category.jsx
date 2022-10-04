@@ -51,6 +51,10 @@ const Wrapper = styled.div`
   height: 6rem;
   border-radius: 50px;
   margin-top: 4rem;
+
+  @media only screen and (max-width: 580px) {
+    width: 100%;
+  }
 `;
 
 const CategoryLink = styled(NavLink)`
