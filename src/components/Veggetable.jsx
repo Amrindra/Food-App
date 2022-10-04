@@ -51,7 +51,7 @@ function Veggetable() {
         {veggie.map((item) => (
           <SplideSlide key={item.id}>
             <Card>
-              <Link to={"/recipe/" + item.id}>
+              <Link to={"/singleItem/" + item.id}>
                 <ImageWrapper>
                   <img src={item.image} alt={item.title} />
                 </ImageWrapper>

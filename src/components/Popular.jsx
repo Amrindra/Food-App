@@ -55,7 +55,7 @@ function Popular() {
         {popularData.map((item) => (
           <SplideSlide key={item.id}>
             <Card>
-              <Link to={"/recipe/" + item.id}>
+              <Link to={"/singleItem/" + item.id}>
                 <img src={item.image} alt={item.title} />
                 <p>{item.title}</p>
               </Link>

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { CartContext } from "../context/CartStateProvider";
 
 const SingleItem = () => {
-  const [singleData, setSingleData] = useState({});
+  const [singleData, setSingleData] = useState([]);
+
+  const { addToCart } = useContext(CartContext);
 
   let params = useParams();
 
@@ -45,7 +49,7 @@ const SingleItem = () => {
         <img src={singleData.image} alt={singleData.title} />
       </div>
       <Info>
-        <Button>Add to Cart</Button>
+        <Button onClick={() => addToCart(singleData)}>Add to Cart</Button>
         <h4>Price: ${singleData.pricePerServing}</h4>
         <Description>Vegan: {singleData.vegan ? "Yes" : "No"}</Description>
       </Info>
@@ -61,6 +65,9 @@ const Wrapper = styled.div`
   div {
     img {
       width: 500px;
+    }
+    h3 {
+      margin-bottom: 2rem;
     }
   }
 `;

@@ -22,7 +22,7 @@ const Header = () => {
 
       <Link to="/cart">
         <CartWrapper>
-          <span>{cartItems ? cartItems.length : 0}</span>
+          {cartItems.length > 0 && <span>{cartItems.length}</span>}
           <GiShoppingCart />
         </CartWrapper>
       </Link>
@@ -72,10 +72,17 @@ const CartWrapper = styled.div`
   z-index: 999;
 
   span {
-    color: white;
+    color: red;
     position: absolute;
     top: 0;
     font-weight: bold;
+    background-color: white;
+    border-radius: 50px;
+    width: 35%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   svg {

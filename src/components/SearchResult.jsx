@@ -1,10 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { CartContext } from "../context/CartStateProvider";
 
 const SearchResult = () => {
   const [searchResultData, setSearchResultData] = useState([]);
+
+  const { addToCart } = useContext(CartContext);
+
   // Using useParams here is to get parms url dynamically from the url
   const params = useParams();
 
@@ -28,14 +32,19 @@ const SearchResult = () => {
 
   return (
     <CuisineGridStyled>
-      {searchResultData.map((item) => (
-        <Link to={"/recipe/" + item.id}>
+      {searchResultData.map((item) => {
+        item.pricePerServing = 12.0;
+        return (
           <Card key={item.id}>
-            <img src={item.image} alt={item.title} />
-            <h4>{item.title}</h4>
+            <Link to={"/singleItem/" + item.id}>
+              <img src={item.image} alt={item.title} />
+              <h4>{item.title}</h4>
+            </Link>
+            <span>$12.00 Fixed Price</span>
+            <button onClick={() => addToCart(item)}>Order Me</button>
           </Card>
-        </Link>
-      ))}
+        );
+      })}
     </CuisineGridStyled>
   );
 };
@@ -48,6 +57,9 @@ const CuisineGridStyled = styled.div`
 `;
 
 const Card = styled.div`
+  position: relative;
+  text-align: center;
+
   img {
     width: 100%;
     border-radius: 1rem;
@@ -61,6 +73,39 @@ const Card = styled.div`
     text-align: center;
     padding: 1rem;
     font-size: 1.5rem;
+  }
+
+  button {
+    border: none;
+    padding: 0.61rem;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 35%;
+    text-align: center;
+    background-color: rgba(162, 162, 162, 0.4);
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    opacity: 0;
+  }
+
+  span {
+    opacity: 0;
+  }
+
+  &:hover {
+    button {
+      opacity: 100;
+      cursor: pointer;
+      background-color: var(--dark-color);
+    }
+
+    span {
+      opacity: 100;
+    }
   }
 `;
 

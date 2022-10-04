@@ -12,7 +12,7 @@ function Pages() {
       <Route path="/" element={<Homepage />} />
       <Route path="/cuisine/:type" element={<Cuisine />} />
       <Route path="/searchResult/:search" element={<SearchResult />} />
-      <Route path="/recipe/:id" element={<SingleItem />} />
+      <Route path="/singleItem/:id" element={<SingleItem />} />
       <Route path="/cart" element={<Cart />} />
     </Routes>
   );

@@ -4,9 +4,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useContext } from "react";
+import { CartContext } from "../context/CartStateProvider";
 
 const Cuisine = () => {
   const [cuisineData, setCuisineData] = useState([]);
+
+  const { addToCart } = useContext(CartContext);
   // Using useParams here is to get parms url dynamically
   const params = useParams();
 
@@ -32,16 +36,20 @@ const Cuisine = () => {
 
   return (
     <CuisineGridStyled>
-      {cuisineData.map((item) => (
-        <Card key={item.id}>
-          <Link to={"/recipe/" + item.id}>
-            <img src={item.image} alt={item.title} />
-            <h4>{item.title}</h4>
-          </Link>
-          <span>$12.00 Fixed Price</span>
-          <button>Order Me</button>
-        </Card>
-      ))}
+      {/* item.pricePerServing = 12.0 = This line of code is used to add price into the cartItems when we add to cart button. Because the api does not have the price for this request */}
+      {cuisineData.map((item) => {
+        item.pricePerServing = 12.0;
+        return (
+          <Card key={item.id}>
+            <Link to={"/singleItem/" + item.id}>
+              <img src={item.image} alt={item.title} />
+              <h4>{item.title}</h4>
+            </Link>
+            <span>$12.00 Fixed Price</span>
+            <button onClick={() => addToCart(item)}>Order Me</button>
+          </Card>
+        );
+      })}
     </CuisineGridStyled>
   );
 };
