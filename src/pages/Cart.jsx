@@ -43,7 +43,15 @@ const Cart = () => {
                 </td>
                 <td>
                   <QtyWrapper>
-                    <span onClick={() => decreaseQty(item)}>-</span>
+                    <span
+                      onClick={
+                        item.qty > 1
+                          ? () => decreaseQty(item)
+                          : () => removeItem(item.id)
+                      }
+                    >
+                      -
+                    </span>
                     <p>{item.qty}</p>
                     <span onClick={() => increaseQty(item)}>+</span>
                   </QtyWrapper>
