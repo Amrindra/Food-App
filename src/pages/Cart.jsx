@@ -33,7 +33,7 @@ const Cart = () => {
             {cartItems?.map((item) => (
               <Tr key={item.id}>
                 <Td>
-                  <span onClick={() => removeItem(item.id)}>X</span>
+                  <button onClick={() => removeItem(item.id)}>X</button>
                   <img src={item.image} alt={item.title} />
                   <Title>{item.title}</Title>
                   <p>ID: {item.id}</p>
@@ -114,14 +114,24 @@ const Td = styled.td`
   max-width: 200px;
   position: relative;
 
-  span {
+  button {
     position: absolute;
     z-index: 9;
     font-weight: bold;
-    color: red;
+
     left: 160px;
     top: -4px;
-    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid red;
+    background: red;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+      /* background-color: white; */
+    }
   }
 `;
 
