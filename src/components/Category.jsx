@@ -40,6 +40,10 @@ const CategoryListItem = styled.div`
   position: sticky;
   top: 50px;
   z-index: 99;
+
+  /* @media only screen and (max-width: 580px) {
+    top: 30px;
+  } */
 `;
 
 const Wrapper = styled.div`
@@ -54,6 +58,8 @@ const Wrapper = styled.div`
 
   @media only screen and (max-width: 580px) {
     width: 100%;
+    height: 4.5rem;
+    margin-top: 1.7rem;
   }
 `;
 
@@ -81,6 +87,19 @@ const CategoryLink = styled(NavLink)`
 
   &.active {
     background: linear-gradient(to right, #dddddd, #a68dad);
+  }
+
+  @media only screen and (max-width: 580px) {
+    width: 5rem;
+    height: 5rem;
+
+    h4 {
+      font-size: 0.9rem;
+    }
+
+    svg {
+      font-size: 1.2rem;
+    }
   }
 `;
 

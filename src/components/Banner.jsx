@@ -25,6 +25,8 @@ const BannerStyled = styled.div`
 
   @media only screen and (max-width: 580px) {
     img {
+      height: 15rem;
+      border-radius: 0;
     }
   }
 `;

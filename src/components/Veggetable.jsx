@@ -83,12 +83,21 @@ function Veggetable() {
 }
 
 const Container = styled.div`
-  margin: 4rem 0;
+  height: 100vh;
 
   h3 {
     text-transform: capitalize;
     text-align: end;
     margin: 3rem 3rem;
+  }
+
+  @media only screen and (max-width: 580px) {
+    h3 {
+      font-size: 2rem;
+      text-align: center;
+      width: 300px;
+      margin: 2rem;
+    }
   }
 `;
 
