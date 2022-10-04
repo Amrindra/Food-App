@@ -1,19 +1,23 @@
 import React from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { CartContext } from "../context/CartStateProvider";
 
 const Cart = () => {
-  const { cartItems, removeItem, changeQty } = useContext(CartContext);
+  const { cartItems, removeItem, increaseQty, decreaseQty } =
+    useContext(CartContext);
 
   const subtotal = cartItems.reduce(
-    (amount, item) => item.pricePerServing + amount,
+    (amount, item) => item.pricePerServing * item.qty + amount,
     0
   );
 
+  // console.log(cartItems.cartItems);
+
   return (
     <>
-      {cartItems.length === 0 ? (
+      {cartItems?.length === 0 ? (
         <EmptyCart>
           <h3>Your cart is empty!</h3>
         </EmptyCart>
@@ -26,7 +30,7 @@ const Cart = () => {
               <th>QTY</th>
               <th>Total</th>
             </tr>
-            {cartItems.map((item) => (
+            {cartItems?.map((item) => (
               <Tr key={item.id}>
                 <Td>
                   <span onClick={() => removeItem(item.id)}>X</span>
@@ -39,9 +43,9 @@ const Cart = () => {
                 </td>
                 <td>
                   <QtyWrapper>
-                    <span>-</span>
+                    <span onClick={() => decreaseQty(item)}>-</span>
                     <p>{item.qty}</p>
-                    <span>+</span>
+                    <span onClick={() => increaseQty(item)}>+</span>
                   </QtyWrapper>
                 </td>
                 <td>${(item.pricePerServing * item.qty).toFixed(2)}</td>

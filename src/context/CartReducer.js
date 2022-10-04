@@ -26,13 +26,26 @@ const CartReducer = (state, action) => {
         cartItems: state.cartItems.filter((item) => item.id !== action.payload),
       };
 
-    case "CHANGE_CART_QTY":
+    case "INCREASE":
+      state.cartItems[
+        state.cartItems.findIndex((item) => item.id === action.payload.id)
+      ].qty++;
+
       return {
         ...state,
-        cart: state.cartItems.filter((c) =>
-          c.id === action.payload.id ? (c.qty = action.payload.qty) : c.qty
-        ),
+        cartItems: [...state.cartItems],
       };
+
+    case "DECREASE":
+      state.cartItems[
+        state.cartItems.findIndex((item) => item.id === action.payload.id)
+      ].qty--;
+
+      return {
+        ...state,
+        cartItems: [...state.cartItems],
+      };
+
     default:
       return state;
   }
