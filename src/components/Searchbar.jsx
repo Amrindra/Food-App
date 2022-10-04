@@ -58,8 +58,14 @@ const FormInput = styled.form`
     cursor: pointer;
   }
 
-  @media only screen and (max-width: var(--mobile-size)) {
-    /* padding: 0.5rem; */
+  @media only screen and (max-width: 580px) {
+    width: 100%;
+    gap: 0;
+    padding: 0.8rem;
+
+    input {
+      font-size: 1rem;
+    }
   }
 `;
 

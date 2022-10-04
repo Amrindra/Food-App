@@ -49,12 +49,21 @@ const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media only screen and (max-width: 580px) {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 const Logo = styled.div`
   color: white;
   font-size: 1rem;
   font-weight: bold;
+
+  @media only screen and (max-width: 580px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const SearchbarWrapper = styled.div`
@@ -86,9 +95,24 @@ const CartWrapper = styled.div`
     align-items: center;
   }
 
+  /* svg is a icon */
   svg {
     color: white;
     font-size: 2rem;
+  }
+
+  @media only screen and (max-width: 580px) {
+    width: 3rem;
+    height: 3rem;
+
+    span {
+      margin-top: 0.3rem;
+    }
+
+    svg {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+    }
   }
 `;
 
