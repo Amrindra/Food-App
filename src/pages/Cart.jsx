@@ -158,7 +158,7 @@ const Td = styled.td`
 
   button {
     position: absolute;
-    z-index: 9;
+    z-index: 999;
     font-weight: bold;
     left: 160px;
     top: -4px;

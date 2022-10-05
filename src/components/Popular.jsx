@@ -117,9 +117,6 @@ const Card = styled.div`
     width: 100%;
     padding-top: 1rem;
   }
-
-  @media only screen and (max-width: 580px) {
-  }
 `;
 
 const CardInfo = styled.div`
@@ -127,7 +124,7 @@ const CardInfo = styled.div`
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  margin: 2rem;
+  margin-top: 2rem;
 
   span {
     color: var(--dark-color);
@@ -143,11 +140,25 @@ const CardInfo = styled.div`
     padding: 0.3rem 1.5rem;
     border-radius: 1rem;
     text-transform: capitalize;
+    border: 1px solid black;
 
     &:hover {
       background: var(--dark-color);
       color: white;
       cursor: pointer;
+    }
+  }
+
+  @media only screen and (max-width: 880px) {
+    gap: 0.5rem;
+
+    span {
+      font-size: 1rem;
+    }
+
+    button {
+      font-size: 0.99rem;
+      padding: 0.2rem 1rem;
     }
   }
 `;
