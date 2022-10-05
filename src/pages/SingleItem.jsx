@@ -36,29 +36,38 @@ const SingleItem = () => {
     }
   };
 
-  console.log(singleData);
+  // console.log(singleData);
 
   useEffect(() => {
     getProductData();
   }, [params.id]);
 
   return (
-    <Wrapper>
-      <div>
-        <h3>{singleData.title}</h3>
-        <img src={singleData.image} alt={singleData.title} />
-      </div>
-      <Info>
-        <Button onClick={() => addToCart(singleData)}>Add to Cart</Button>
-        <h4>Price: ${singleData.pricePerServing}</h4>
-        <Description>Vegan: {singleData.vegan ? "Yes" : "No"}</Description>
-      </Info>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <div>
+          <h3>{singleData.title}</h3>
+          <img src={singleData.image} alt={singleData.title} />
+        </div>
+        <Info>
+          <button onClick={() => addToCart(singleData)}>Add to Cart</button>
+          <p>Price: ${singleData.pricePerServing}</p>
+        </Info>
+      </Wrapper>
+      <Description>Vegan: {singleData.vegan ? "Yes" : "No"}</Description>
+      <CuisineType>Cuisine Types:</CuisineType>
+      {singleData.cuisines?.map((item, index) => (
+        <ul style={{ marginLeft: "1rem" }} key={index}>
+          <li> {item}</li>
+        </ul>
+      ))}
+    </>
   );
 };
 
 const Wrapper = styled.div`
-  margin: 3rem 0 5rem 0;
+  /* margin: 3rem 0 5rem 0; */
+  margin-top: 2rem;
   display: flex;
   align-items: baseline;
 
@@ -70,27 +79,71 @@ const Wrapper = styled.div`
       margin-bottom: 2rem;
     }
   }
-`;
 
-const Button = styled.button`
-  padding: 1rem 2rem;
-  color: #313131;
-  background: white;
-  border: 2px solid black;
-  margin-right: 2rem;
-  font-weight: 600;
-  cursor: pointer;
+  @media only screen and (max-width: 580px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      img {
+        width: 100%;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+    }
+  }
 `;
 
 const Info = styled.div`
   margin-left: 10rem;
 
-  h4 {
+  button {
+    padding: 1rem 2rem;
+    color: #313131;
+    background: white;
+    border: 2px solid black;
+    margin-right: 2rem;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #313131;
+      color: white;
+    }
+  }
+
+  p {
     margin-top: 2rem;
     font-size: 2rem;
   }
+
+  @media only screen and (max-width: 580px) {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin-left: 0;
+
+    p {
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+    }
+  }
 `;
 
-const Description = styled.div``;
+const Description = styled.div`
+  margin-top: 1rem;
+`;
+
+const CuisineType = styled.h3`
+  font-size: 1rem;
+`;
 
 export default SingleItem;
