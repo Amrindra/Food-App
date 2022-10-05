@@ -97,6 +97,21 @@ const Wrapper = styled.div`
       }
     }
   }
+
+  @media only screen and (max-width: 880px) {
+    align-items: center;
+
+    div {
+      width: 100%;
+      img {
+        width: 100%;
+      }
+
+      h3 {
+        text-align: center;
+      }
+    }
+  }
 `;
 
 const Info = styled.div`
@@ -135,6 +150,21 @@ const Info = styled.div`
     button {
       padding: 0.5rem 1rem;
     }
+  }
+
+  @media only screen and (max-width: 880px) {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    width: 100%;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
   }
 `;
 

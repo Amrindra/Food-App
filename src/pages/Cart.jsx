@@ -65,7 +65,9 @@ const Cart = () => {
           </Table>
           <BottomWrapper>
             <Subtotal>Subtotal: ${subtotal.toFixed(2)}</Subtotal>
-            <CheckOutBtn>Check Out</CheckOutBtn>
+            <Link to="/payment">
+              <CheckOutBtn>Check Out</CheckOutBtn>
+            </Link>
           </BottomWrapper>
         </TableContainer>
       )}
@@ -224,7 +226,7 @@ const CheckOutBtn = styled.button`
   border: none;
   color: white;
   font-weight: bold;
-  width: 15%;
+  width: 150px;
 
   &:hover {
     cursor: pointer;
