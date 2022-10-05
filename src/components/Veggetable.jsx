@@ -115,6 +115,7 @@ const Card = styled.div`
 `;
 
 const ImageWrapper = styled.div``;
+
 const CardBody = styled.div`
   padding-bottom: 2rem;
 
@@ -149,6 +150,12 @@ const CardBody = styled.div`
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+
+  @media only screen and (max-width: 880px) {
+    div {
+      gap: 0.5rem;
     }
   }
 `;
