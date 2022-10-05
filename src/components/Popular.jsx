@@ -125,6 +125,7 @@ const CardInfo = styled.div`
   align-items: center;
   gap: 3rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 
   span {
     color: var(--dark-color);

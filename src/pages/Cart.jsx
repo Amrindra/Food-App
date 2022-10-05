@@ -63,7 +63,10 @@ const Cart = () => {
               </tr>
             ))}
           </Table>
-          <Subtotal>Subtotal: ${subtotal.toFixed(2)}</Subtotal>
+          <BottomWrapper>
+            <Subtotal>Subtotal: ${subtotal.toFixed(2)}</Subtotal>
+            <CheckOutBtn>Check Out</CheckOutBtn>
+          </BottomWrapper>
         </TableContainer>
       )}
     </>
@@ -73,6 +76,7 @@ const Cart = () => {
 const TableContainer = styled.div`
   margin-top: 2rem;
   height: 100vh;
+  width: 100%;
 `;
 
 const Table = styled.table`
@@ -202,12 +206,30 @@ const EmptyCart = styled.div`
   }
 `;
 
+const BottomWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
 const Subtotal = styled.p`
-  text-align: end;
   margin-top: 3rem;
   margin-bottom: 2rem;
   text-decoration: underline;
-  height: 20vh;
+`;
+
+const CheckOutBtn = styled.button`
+  padding: 10px 20px;
+  background-color: gray;
+  border: none;
+  color: white;
+  font-weight: bold;
+  width: 15%;
+
+  &:hover {
+    cursor: pointer;
+    background-color: black;
+  }
 `;
 
 export default Cart;

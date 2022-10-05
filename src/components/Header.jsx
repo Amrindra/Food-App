@@ -39,6 +39,7 @@ const HeaderContainer = styled.header`
   position: sticky;
   top: 2%;
   z-index: 999;
+  width: 100%;
 `;
 
 const LogoWrapper = styled.div`
