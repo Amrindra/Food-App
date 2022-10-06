@@ -20,7 +20,7 @@ const Payment = () => {
     cvv: "",
   });
 
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, removeItem } = useContext(CartContext);
 
   const subtotal = cartItems.reduce(
     (amount, item) => item.pricePerServing * item.qty + amount,
@@ -99,6 +99,7 @@ const Payment = () => {
         </InputFieldWrapper>
 
         <button>Place Your Order</button>
+
         <CreditCardGroup>
           <p>We accept the following cards</p>
           <CreditCardIconsWrapper>
@@ -112,11 +113,13 @@ const Payment = () => {
 
       <TotalSection>
         <h3>ORDER DETAILS</h3>
+        <hr />
 
         <OrderDetailWrapper>
           {cartItems?.map((item) => (
             <OrderList key={item.id}>
               <img src={item.image} alt={item.title} />
+              <button onClick={() => removeItem(item.id)}>Delete</button>
               <p>${item.pricePerServing}</p>
             </OrderList>
           ))}
@@ -139,7 +142,6 @@ const Container = styled.div`
   margin-top: 4rem;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
 `;
 
 const PaymentForm = styled.form`
@@ -147,8 +149,6 @@ const PaymentForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
-  /* width: 100%; */
 
   h3 {
     margin: 2rem 0;
@@ -169,7 +169,7 @@ const PaymentForm = styled.form`
     font-weight: bold;
     background-color: #2ba64b;
     color: white;
-    width: 200px;
+    width: 250px;
 
     &:hover {
       background-color: #65ba7b;
@@ -289,7 +289,7 @@ const TotalSection = styled.div`
   max-height: 10%;
 
   h3 {
-    margin: 2rem 0;
+    margin: 1rem 0;
     font-weight: 400;
     font-size: 2.5rem;
     text-align: center;
@@ -297,6 +297,7 @@ const TotalSection = styled.div`
 `;
 const OrderDetailWrapper = styled.ul`
   margin-bottom: 1rem;
+  margin-top: 1rem;
 `;
 
 const OrderList = styled.li`
@@ -305,9 +306,22 @@ const OrderList = styled.li`
   justify-content: space-between;
 
   img {
-    width: 100px;
-    height: 80px;
+    width: 90px;
+    height: 70px;
     margin-bottom: 10px;
+  }
+
+  button {
+    border: none;
+    background-color: #cf2f1d;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #c9574b;
+    }
   }
 `;
 
