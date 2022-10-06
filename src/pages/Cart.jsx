@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../context/CartStateProvider";
+import { AiFillMinusSquare, AiFillPlusSquare } from "react-icons/ai";
 
 const Cart = () => {
   const { cartItems, removeItem, increaseQty, decreaseQty } =
@@ -46,17 +47,16 @@ const Cart = () => {
                 </td>
                 <td>
                   <QtyWrapper>
-                    <button
+                    <AiFillMinusSquare
                       onClick={
                         item.qty > 1
                           ? () => decreaseQty(item)
                           : () => removeItem(item.id)
                       }
-                    >
-                      -
-                    </button>
+                    />
                     <p>{item.qty}</p>
-                    <button onClick={() => increaseQty(item)}>+</button>
+
+                    <AiFillPlusSquare onClick={() => increaseQty(item)} />
                   </QtyWrapper>
                 </td>
                 <td>${(item.pricePerServing * item.qty).toFixed(2)}</td>
@@ -126,19 +126,15 @@ const QtyWrapper = styled.div`
   align-items: center;
   align-self: center;
 
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
+  svg {
     cursor: pointer;
     width: 20px;
     height: 20px;
     font-size: 1rem;
-    border-radius: 50%;
-    border: none;
-    background-color: black;
-    color: white;
+  }
+
+  svg:nth-last-child(3) {
+    color: #b51a09;
   }
 
   p {
