@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { GrSecure } from "react-icons/gr";
+import { useContext } from "react";
+import { CartContext } from "../context/CartStateProvider";
 
 const Payment = () => {
   const [cardValues, setCardValue] = useState({
@@ -10,6 +12,13 @@ const Payment = () => {
     expDate: "",
     cvv: "",
   });
+
+  const { cartItems } = useContext(CartContext);
+
+  const subtotal = cartItems.reduce(
+    (amount, item) => item.pricePerServing * item.qty + amount,
+    0
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,16 +89,23 @@ const Payment = () => {
 
         <button>Place Your Order</button>
       </PaymentForm>
-      <TotalSection>
-        <h3>ORDER</h3>
 
-        <div>
-          <img
-            src="https://spoonacular.com/recipeImages/634070-556x370.jpg"
-            alt=""
-          />
-          <p>$44</p>
-        </div>
+      <TotalSection>
+        <h3>ORDER DETAILS</h3>
+
+        <OrderDetailWrapper>
+          {cartItems?.map((item) => (
+            <OrderList key={item.id}>
+              <img src={item.image} alt={item.title} />
+              <p>${item.pricePerServing}</p>
+            </OrderList>
+          ))}
+        </OrderDetailWrapper>
+        <hr />
+        <Total>
+          <p>Total: </p>
+          <p>${subtotal.toFixed(2)}</p>
+        </Total>
       </TotalSection>
     </Container>
   );
@@ -103,6 +119,7 @@ const Container = styled.div`
   margin-top: 4rem;
   justify-content: center;
   align-items: center;
+  /* height: 100vh; */
 `;
 
 const PaymentForm = styled.form`
@@ -110,6 +127,7 @@ const PaymentForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* height: 100vh; */
   /* width: 100%; */
 
   h3 {
@@ -208,6 +226,41 @@ const Wrapper = styled.div`
     }
   }
 `;
-const TotalSection = styled.div``;
+
+const TotalSection = styled.div`
+  max-height: 10%;
+
+  h3 {
+    margin: 2rem 0;
+    font-weight: 400;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+`;
+const OrderDetailWrapper = styled.ul`
+  margin-bottom: 1rem;
+`;
+
+const OrderList = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    width: 100px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+`;
+
+const Total = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  p {
+    font-size: 1.2rem;
+  }
+`;
 
 export default Payment;

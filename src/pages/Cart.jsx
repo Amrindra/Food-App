@@ -66,7 +66,7 @@ const Cart = () => {
           <BottomWrapper>
             <Subtotal>Subtotal: ${subtotal.toFixed(2)}</Subtotal>
             <Link to="/payment">
-              <CheckOutBtn>Check Out</CheckOutBtn>
+              <CheckOutBtn>Proceed to Check Out</CheckOutBtn>
             </Link>
           </BottomWrapper>
         </TableContainer>
@@ -212,25 +212,29 @@ const BottomWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  height: 40vh;
 `;
 
 const Subtotal = styled.p`
   margin-top: 3rem;
   margin-bottom: 2rem;
   text-decoration: underline;
+  font-size: 1.2rem;
+  font-weight: bold;
 `;
 
 const CheckOutBtn = styled.button`
-  padding: 10px 20px;
-  background-color: gray;
+  padding: 15px 20px;
   border: none;
   color: white;
   font-weight: bold;
-  width: 150px;
+  width: 250px;
+  font-size: 1.2rem;
+  background-color: black;
 
   &:hover {
     cursor: pointer;
-    background-color: black;
+    background-color: gray;
   }
 `;
 
