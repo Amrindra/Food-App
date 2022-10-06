@@ -213,6 +213,10 @@ const BottomWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   height: 40vh;
+
+  @media only screen and (max-width: 580px) {
+    align-items: center;
+  }
 `;
 
 const Subtotal = styled.p`
@@ -235,6 +239,11 @@ const CheckOutBtn = styled.button`
   &:hover {
     cursor: pointer;
     background-color: gray;
+  }
+
+  @media only screen and (max-width: 580px) {
+    width: 230px;
+    font-size: 1rem;
   }
 `;
 
