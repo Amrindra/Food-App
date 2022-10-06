@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { GrSecure } from "react-icons/gr";
+import { AiOutlineCreditCard } from "react-icons/ai";
 import { useContext } from "react";
 import { CartContext } from "../context/CartStateProvider";
 
@@ -60,6 +61,10 @@ const Payment = () => {
             />
           </InputField>
 
+          <Icon>
+            <AiOutlineCreditCard />
+          </Icon>
+
           <InputFieldBottom>
             <Wrapper>
               <label htmlFor="date">Expiration Date</label>
@@ -88,6 +93,13 @@ const Payment = () => {
         </InputFieldWrapper>
 
         <button>Place Your Order</button>
+        {/* <div>
+          <p>We accept these types of credit</p>
+          <img
+            src="https://a1devices.com/wp-content/uploads/2020/07/paypal-acceptance-mark-major-credit-card-logos.jpg"
+            alt=""
+          />
+        </div> */}
       </PaymentForm>
 
       <TotalSection>
@@ -158,7 +170,9 @@ const PaymentForm = styled.form`
   }
 `;
 
-const InputFieldWrapper = styled.div``;
+const InputFieldWrapper = styled.div`
+  position: relative;
+`;
 
 const InputField = styled.div`
   display: flex;
@@ -261,6 +275,12 @@ const Total = styled.div`
   p {
     font-size: 1.2rem;
   }
+`;
+
+const Icon = styled.div`
+  position: absolute;
+  right: 10px;
+  bottom: 96px;
 `;
 
 export default Payment;
