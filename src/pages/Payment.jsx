@@ -3,6 +3,12 @@ import { useState } from "react";
 import styled from "styled-components";
 import { GrSecure } from "react-icons/gr";
 import { AiOutlineCreditCard } from "react-icons/ai";
+import {
+  FaCcDiscover,
+  FaCcMastercard,
+  FaCcVisa,
+  FaCcPaypal,
+} from "react-icons/fa";
 import { useContext } from "react";
 import { CartContext } from "../context/CartStateProvider";
 
@@ -93,13 +99,15 @@ const Payment = () => {
         </InputFieldWrapper>
 
         <button>Place Your Order</button>
-        {/* <div>
-          <p>We accept these types of credit</p>
-          <img
-            src="https://a1devices.com/wp-content/uploads/2020/07/paypal-acceptance-mark-major-credit-card-logos.jpg"
-            alt=""
-          />
-        </div> */}
+        <CreditCardGroup>
+          <p>We accept the following cards</p>
+          <CreditCardIconsWrapper>
+            <FaCcDiscover />
+            <FaCcMastercard />
+            <FaCcVisa />
+            <FaCcPaypal />
+          </CreditCardIconsWrapper>
+        </CreditCardGroup>
       </PaymentForm>
 
       <TotalSection>
@@ -240,6 +248,42 @@ const Wrapper = styled.div`
     }
   }
 `;
+
+const CreditCardGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  p {
+    padding: 2rem 0 1rem 0;
+    font-size: 1.2rem;
+  }
+`;
+
+const CreditCardIconsWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  svg:nth-last-child(4) {
+    font-size: 3rem;
+    color: orange;
+  }
+  svg:nth-last-child(3) {
+    font-size: 3rem;
+    color: red;
+  }
+  svg:nth-last-child(2) {
+    color: blue;
+    font-size: 3rem;
+  }
+  svg:nth-last-child(1) {
+    font-size: 3rem;
+    color: lightblue;
+  }
+`;
+
+// TOTAL SECTION BELOW
 
 const TotalSection = styled.div`
   max-height: 10%;
