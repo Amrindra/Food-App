@@ -83,7 +83,8 @@ function Veggetable() {
 }
 
 const Container = styled.div`
-  height: 70vh;
+  /* margin-bottom: 4rem; */
+
   h3 {
     text-transform: capitalize;
     text-align: end;

@@ -37,11 +37,9 @@ const Payment = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === cardValues.cardNumber) {
-      setCardValue({ [name]: format(value) });
-    } else {
-      setCardValue({ ...cardValues, [name]: value });
-    }
+    // if (name === "cardNumber") {
+    // }
+    setCardValue({ ...cardValues, [name]: value });
   };
 
   return (
@@ -66,11 +64,12 @@ const Payment = () => {
           <InputField>
             <label htmlFor="cardnumber">Card Number</label>
             <input
-              type="text"
+              type="number"
               placeholder="Ex. 1234 5678 1234 1234"
               name="cardNumber"
               value={cardValues.cardNumber}
               onChange={handleChange}
+              maxLength={16}
             />
           </InputField>
 
