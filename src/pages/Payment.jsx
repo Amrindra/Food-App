@@ -31,14 +31,22 @@ const Payment = () => {
     e.preventDefault();
   };
 
+  function format(splitDigit) {
+    return splitDigit.toString().replace(/\d{4}(?=.)/g, "$& ");
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCardValue({ ...cardValues, [name]: value });
+    if (name === cardValues.cardNumber) {
+      setCardValue({ [name]: format(value) });
+    } else {
+      setCardValue({ ...cardValues, [name]: value });
+    }
   };
 
   return (
     <Container>
-      <PaymentForm onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <h3>
           <GrSecure />
           Payment
@@ -63,7 +71,6 @@ const Payment = () => {
               name="cardNumber"
               value={cardValues.cardNumber}
               onChange={handleChange}
-              pattern="[0-9\s]{13,19}"
             />
           </InputField>
 
@@ -109,27 +116,30 @@ const Payment = () => {
             <FaCcPaypal />
           </CreditCardIconsWrapper>
         </CreditCardGroup>
-      </PaymentForm>
+      </Form>
 
-      <TotalSection>
-        <h3>ORDER DETAILS</h3>
-        <hr />
+      {/* If cartItems is empty do not show the the order details */}
+      {cartItems.length > 0 && (
+        <TotalSection>
+          <h3>ORDER DETAILS</h3>
+          <hr />
 
-        <OrderDetailWrapper>
-          {cartItems?.map((item) => (
-            <OrderList key={item.id}>
-              <img src={item.image} alt={item.title} />
-              <button onClick={() => removeItem(item.id)}>Delete</button>
-              <p>${item.pricePerServing}</p>
-            </OrderList>
-          ))}
-        </OrderDetailWrapper>
-        <hr />
-        <Total>
-          <p>Total: </p>
-          <p>${subtotal.toFixed(2)}</p>
-        </Total>
-      </TotalSection>
+          <OrderDetailWrapper>
+            {cartItems?.map((item) => (
+              <OrderList key={item.id}>
+                <img src={item.image} alt={item.title} />
+                <button onClick={() => removeItem(item.id)}>Delete</button>
+                <p>${item.pricePerServing}</p>
+              </OrderList>
+            ))}
+          </OrderDetailWrapper>
+          <hr />
+          <Total>
+            <p>Total: </p>
+            <p>${subtotal.toFixed(2)}</p>
+          </Total>
+        </TotalSection>
+      )}
     </Container>
   );
 };
@@ -144,7 +154,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const PaymentForm = styled.form`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
