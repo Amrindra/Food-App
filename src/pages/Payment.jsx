@@ -58,6 +58,7 @@ const Payment = () => {
               name="cardHolderName"
               value={cardValues.cardHolderName}
               onChange={handleChange}
+              required
             />
           </InputField>
 

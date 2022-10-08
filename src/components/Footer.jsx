@@ -13,7 +13,7 @@ function Footer() {
       </SocialIcons>
       <Description>
         <p>About Us</p>
-        <p>Contact and Customer Support</p>
+        <p>Contact Our Customer Support</p>
         <p>&copy; All right reserve {currentYear}</p>
       </Description>
     </Container>
@@ -25,6 +25,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 4rem;
   height: 20vh;
 `;
 

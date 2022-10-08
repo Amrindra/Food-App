@@ -77,7 +77,6 @@ const Cart = () => {
 
 const TableContainer = styled.div`
   margin-top: 2rem;
-  height: 100vh;
   width: 100%;
 `;
 

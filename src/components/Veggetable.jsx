@@ -106,7 +106,7 @@ const Card = styled.div`
   border-radius: 5px;
   overflow: hidden;
   position: relative;
-  border: 0.3rem solid gold;
+  border: 0.3rem solid white;
 
   img {
     width: 100%;
@@ -142,14 +142,19 @@ const CardBody = styled.div`
     button {
       padding: 0.5rem 1rem;
       color: #313131;
-      background: white;
+      background: transparent;
       border: 2px solid black;
+      border-radius: 5px;
       font-weight: 600;
       font-weight: bold;
       text-transform: capitalize;
+      color: black;
 
       &:hover {
         cursor: pointer;
+        background-color: #313131;
+        color: white;
+        border: 2px solid white;
       }
     }
   }
