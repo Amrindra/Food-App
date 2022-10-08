@@ -19,6 +19,7 @@ const Payment = () => {
     expDate: "",
     cvv: "",
   });
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const { cartItems, removeItem } = useContext(CartContext);
 
@@ -29,11 +30,21 @@ const Payment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // These conditions are used to check if the input field is blank we'll set the errorMsg state to true
+    if (
+      cardValues.cardHolderName.length === 0 ||
+      cardValues.cardNumber.length === 0 ||
+      cardValues.cvv.length === 0 ||
+      cardValues.expDate.length === 0
+    ) {
+      setErrorMsg(true);
+    }
   };
 
-  function format(splitDigit) {
-    return splitDigit.toString().replace(/\d{4}(?=.)/g, "$& ");
-  }
+  // function format(splitDigit) {
+  //   return splitDigit.toString().replace(/\d{4}(?=.)/g, "$& ");
+  // }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,9 +69,15 @@ const Payment = () => {
               name="cardHolderName"
               value={cardValues.cardHolderName}
               onChange={handleChange}
-              required
             />
           </InputField>
+
+          {/* If errorMsg is true and input field is blank it will show error messages if user hits the submit buton*/}
+          {errorMsg && cardValues.cardHolderName.length <= 0 ? (
+            <ErrorMessage>Card Holder's Name Cannot Be Blank</ErrorMessage>
+          ) : (
+            ""
+          )}
 
           <InputField>
             <label htmlFor="cardnumber">Card Number</label>
@@ -73,6 +90,12 @@ const Payment = () => {
               maxLength={16}
             />
           </InputField>
+
+          {errorMsg && cardValues.cardNumber.length <= 0 ? (
+            <ErrorMessage>Card Number Cannot Be Blank</ErrorMessage>
+          ) : (
+            ""
+          )}
 
           <Icon>
             <AiOutlineCreditCard />
@@ -90,7 +113,13 @@ const Payment = () => {
                 onFocus={(e) => (e.target.type = "date")}
                 onBlur={(e) => (e.target.type = "text")}
               />
+              {errorMsg && cardValues.expDate.length <= 0 ? (
+                <ErrorMessage>Expiration Date Cannot Be Blank</ErrorMessage>
+              ) : (
+                ""
+              )}
             </Wrapper>
+
             <Wrapper>
               <label htmlFor="cvv">CVV</label>
               <input
@@ -101,6 +130,12 @@ const Payment = () => {
                 onChange={handleChange}
                 maxLength={3}
               />
+
+              {errorMsg && cardValues.cvv.length <= 0 ? (
+                <ErrorMessage>CVV Cannot Be Blank</ErrorMessage>
+              ) : (
+                ""
+              )}
             </Wrapper>
           </InputFieldBottom>
         </InputFieldWrapper>
@@ -291,6 +326,11 @@ const CreditCardIconsWrapper = styled.div`
     font-size: 3rem;
     color: lightblue;
   }
+`;
+
+const ErrorMessage = styled.span`
+  font-size: 1rem;
+  color: red;
 `;
 
 // TOTAL SECTION BELOW

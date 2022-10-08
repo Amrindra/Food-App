@@ -230,10 +230,13 @@ const CheckOutBtn = styled.button`
   width: 250px;
   font-size: 1.2rem;
   background-color: black;
+  transition: all ease-in-out;
 
   &:hover {
     cursor: pointer;
-    background-color: gray;
+    background-color: rgba(34, 31, 33, 0.9);
+    color: white;
+    transition: all ease-in;
   }
 
   @media only screen and (max-width: 580px) {
