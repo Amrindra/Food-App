@@ -40,6 +40,14 @@ const Payment = () => {
     ) {
       setErrorMsg(true);
     }
+
+    const creditPattern = "[0-9s]{13,19}";
+
+    if (!creditPattern.test(cardValues.cardNumber)) {
+      setErrorMsg(true);
+    }
+
+    console.log(cardValues.cardNumber);
   };
 
   // function format(splitDigit) {
@@ -48,9 +56,15 @@ const Payment = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // if (name === "cardNumber") {
+    // const creditPattern = "[0-9s]{13,19}";
+
+    // if (!creditPattern.test(cardValues.cardNumber)) {
+    //   setErrorMsg(true);
     // }
+
     setCardValue({ ...cardValues, [name]: value });
+
+    // console.log({ [name]: value });
   };
 
   return (
@@ -82,13 +96,23 @@ const Payment = () => {
           <InputField>
             <label htmlFor="cardnumber">Card Number</label>
             <input
-              type="number"
+              type="text"
               placeholder="Ex. 1234 5678 1234 1234"
               name="cardNumber"
               value={cardValues.cardNumber}
               onChange={handleChange}
               maxLength={16}
+              min={0}
+              pattern="[0-9s]{13,19}"
             />
+
+            {errorMsg ? (
+              <></>
+            ) : (
+              <Icon>
+                <AiOutlineCreditCard />
+              </Icon>
+            )}
           </InputField>
 
           {errorMsg && cardValues.cardNumber.length <= 0 ? (
@@ -96,10 +120,6 @@ const Payment = () => {
           ) : (
             ""
           )}
-
-          <Icon>
-            <AiOutlineCreditCard />
-          </Icon>
 
           <InputFieldBottom>
             <Wrapper>
@@ -129,6 +149,8 @@ const Payment = () => {
                 value={cardValues.cvv}
                 onChange={handleChange}
                 maxLength={3}
+                min={0}
+                pattern="\d*"
               />
 
               {errorMsg && cardValues.cvv.length <= 0 ? (
@@ -187,6 +209,10 @@ const Container = styled.div`
   margin-top: 4rem;
   justify-content: center;
   align-items: center;
+
+  @media only screen and (max-width: 580px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const Form = styled.form`
@@ -221,10 +247,15 @@ const Form = styled.form`
       cursor: pointer;
     }
   }
+
+  @media only screen and (max-width: 580px) {
+    width: 300px;
+  }
 `;
 
 const InputFieldWrapper = styled.div`
   position: relative;
+  width: 100%;
 `;
 
 const InputField = styled.div`
@@ -260,6 +291,12 @@ const InputFieldBottom = styled.div`
   align-items: center;
   align-items: center;
   gap: 1rem;
+  /* width: 200px; */
+
+  @media only screen and (max-width: 580px) {
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 
 const Wrapper = styled.div`
