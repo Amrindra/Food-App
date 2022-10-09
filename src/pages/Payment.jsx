@@ -162,7 +162,8 @@ const Payment = () => {
           </InputFieldBottom>
         </InputFieldWrapper>
 
-        <button>Place Your Order</button>
+        {/* if cart is empty then disable the button */}
+        <button disabled={cartItems.length <= 0}>Place Your Order</button>
 
         <CreditCardGroup>
           <p>We accept the following cards</p>
@@ -246,6 +247,11 @@ const Form = styled.form`
     &:hover {
       background-color: #65ba7b;
       cursor: pointer;
+    }
+
+    &:disabled {
+      background: #dddddd;
+      cursor: not-allowed;
     }
   }
 
