@@ -85,12 +85,14 @@ const CartWrapper = styled.div`
   span {
     color: red;
     position: absolute;
-    top: 0;
+    top: 20px;
+    right: 20px;
     font-weight: bold;
+    font-size: 0.8rem;
     background-color: white;
     border-radius: 50px;
-    width: 35%;
-    height: 35%;
+    width: 30%;
+    height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,7 +101,7 @@ const CartWrapper = styled.div`
   /* svg is a icon */
   svg {
     color: white;
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   @media only screen and (max-width: 580px) {
@@ -107,12 +109,12 @@ const CartWrapper = styled.div`
     height: 3rem;
 
     span {
-      margin-top: 0.3rem;
+      right: 15px;
+      top: 15px;
     }
 
     svg {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
+      font-size: 2rem;
     }
   }
 `;
