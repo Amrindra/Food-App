@@ -28,7 +28,12 @@ const Cart = () => {
       ) : (
         <TableContainer>
           <Table>
-            <tr>
+            <tr
+              style={{
+                backgroundColor: "gray",
+                color: "white",
+              }}
+            >
               <th>Product</th>
               <th>Prices</th>
               <th>QTY</th>
@@ -43,7 +48,7 @@ const Cart = () => {
                   <p>ID: {item.id}</p>
                 </Td>
                 <td>
-                  <p>${item.pricePerServing}</p>
+                  <p style={{ textAlign: "center" }}>${item.pricePerServing}</p>
                 </td>
                 <td>
                   <QtyWrapper>
@@ -59,7 +64,10 @@ const Cart = () => {
                     <AiFillPlusSquare onClick={() => increaseQty(item)} />
                   </QtyWrapper>
                 </td>
-                <td>${(item.pricePerServing * item.qty).toFixed(2)}</td>
+
+                <td style={{ textAlign: "center" }}>
+                  ${(item.pricePerServing * item.qty).toFixed(2)}
+                </td>
               </tr>
             ))}
           </Table>
@@ -103,6 +111,12 @@ const Table = styled.table`
     font-size: 1.5rem;
   }
 
+  tr {
+    th {
+      text-align: center;
+    }
+  }
+
   @media only screen and (max-width: 580px) {
     td {
       padding: 4px;
@@ -123,7 +137,7 @@ const Table = styled.table`
 const QtyWrapper = styled.div`
   display: flex;
   align-items: center;
-  align-self: center;
+  justify-content: center;
 
   svg {
     cursor: pointer;
@@ -157,12 +171,16 @@ const Td = styled.td`
   max-width: 200px;
   position: relative;
 
+  img {
+    margin-top: 10px;
+  }
+
   button {
     position: absolute;
     z-index: 999;
     font-weight: bold;
     left: 160px;
-    top: -4px;
+    top: 10px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
