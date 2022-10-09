@@ -212,6 +212,7 @@ const Container = styled.div`
 
   @media only screen and (max-width: 580px) {
     flex-direction: column-reverse;
+    margin-top: 2rem;
   }
 `;
 
@@ -249,7 +250,18 @@ const Form = styled.form`
   }
 
   @media only screen and (max-width: 580px) {
-    width: 300px;
+    h3 {
+      font-size: 2rem;
+      margin: 1rem 0;
+    }
+
+    svg {
+      font-size: 1.5rem;
+    }
+
+    button {
+      padding: 15px;
+    }
   }
 `;
 
@@ -284,6 +296,12 @@ const InputField = styled.div`
       outline-color: #2ba64b;
     }
   }
+
+  @media only screen and (max-width: 580px) {
+    label {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const InputFieldBottom = styled.div`
@@ -291,7 +309,6 @@ const InputFieldBottom = styled.div`
   align-items: center;
   align-items: center;
   gap: 1rem;
-  /* width: 200px; */
 
   @media only screen and (max-width: 580px) {
     flex-direction: column;
@@ -370,7 +387,7 @@ const ErrorMessage = styled.span`
   color: red;
 `;
 
-// TOTAL SECTION BELOW
+// *****TOTAL SECTION BELOW *****
 
 const TotalSection = styled.div`
   max-height: 10%;
@@ -381,7 +398,16 @@ const TotalSection = styled.div`
     font-size: 2.5rem;
     text-align: center;
   }
+
+  @media only screen and (max-width: 580px) {
+    width: 100%;
+
+    h3 {
+      font-size: 2rem;
+    }
+  }
 `;
+
 const OrderDetailWrapper = styled.ul`
   margin-bottom: 1rem;
   margin-top: 1rem;
