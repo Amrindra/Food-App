@@ -1,15 +1,22 @@
 import Pages from "./pages/Pages";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import styled from "styled-components";
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <Header />
       <Pages />
       <Footer />
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+`;
 
 export default App;
