@@ -9,6 +9,7 @@ import { CartContext } from "../context/CartStateProvider";
 
 const Cuisine = () => {
   const [cuisineData, setCuisineData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { addToCart } = useContext(CartContext);
   // Using useParams here is to get parms url dynamically
@@ -22,7 +23,8 @@ const Cuisine = () => {
       );
       // const recipes = await resData.json();
       setCuisineData(resData.data.results);
-      console.log(resData.data.results);
+
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -36,20 +38,26 @@ const Cuisine = () => {
 
   return (
     <CuisineGridStyled>
-      {/* item.pricePerServing = 12.0 = This line of code is used to add price into the cartItems when we add to cart button. Because the api does not have the price for this request */}
-      {cuisineData.map((item) => {
-        item.pricePerServing = 12.0;
-        return (
-          <Card key={item.id}>
-            <Link to={"/singleItem/" + item.id}>
-              <img src={item.image} alt={item.title} />
-              <h4>{item.title}</h4>
-            </Link>
-            <span>$12.00 Fixed Price</span>
-            <button onClick={() => addToCart(item)}>Order Me</button>
-          </Card>
-        );
-      })}
+      {isLoading ? (
+        <span>Loading....</span>
+      ) : (
+        <>
+          {/* item.pricePerServing = 12.0 = This line of code is used to add price into the cartItems when we add to cart button. Because the api does not have the price for this request */}
+          {cuisineData.map((item) => {
+            item.pricePerServing = 12.0;
+            return (
+              <Card key={item.id}>
+                <Link to={"/singleItem/" + item.id}>
+                  <img src={item.image} alt={item.title} />
+                  <h4>{item.title}</h4>
+                </Link>
+                <span>$12.00 Fixed Price</span>
+                <button onClick={() => addToCart(item)}>Order Me</button>
+              </Card>
+            );
+          })}
+        </>
+      )}
     </CuisineGridStyled>
   );
 };

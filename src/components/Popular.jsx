@@ -8,6 +8,7 @@ import { CartContext } from "../context/CartStateProvider";
 
 function Popular() {
   const [popularData, setPopularData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { addToCart } = useContext(CartContext);
 
@@ -29,7 +30,9 @@ function Popular() {
         // Converting data JS object to JSON
         localStorage.setItem("popular", JSON.stringify(data.recipes));
         setPopularData(data.recipes);
-        console.log(data.recipes);
+        // console.log(data.recipes);
+
+        setIsLoading(true);
       } catch (error) {
         console.log(error);
       }
@@ -43,41 +46,47 @@ function Popular() {
   return (
     <Container>
       <h3>Our Today Selection</h3>
-      {/* Splide is a React library for Images slider */}
-      <Splide
-        options={{
-          breakpoints: {
-            1024: {
+      {isLoading ? (
+        <span>Loading....</span>
+      ) : (
+        <>
+          {/* Splide is a React library for Images slider */}
+          <Splide
+            options={{
+              breakpoints: {
+                1024: {
+                  perPage: 3,
+                },
+                767: {
+                  perPage: 2,
+                },
+                640: {
+                  perPage: 1,
+                },
+              },
               perPage: 3,
-            },
-            767: {
-              perPage: 2,
-            },
-            640: {
-              perPage: 1,
-            },
-          },
-          perPage: 3,
-          gap: "3rem",
-          drag: "free",
-          pagination: false,
-        }}
-      >
-        {popularData.map((item) => (
-          <SplideSlide key={item.id}>
-            <Card>
-              <Link to={"/singleItem/" + item.id}>
-                <img src={item.image} alt={item.title} />
-                <p>{item.title}</p>
-              </Link>
-              <CardInfo>
-                <span>${item.pricePerServing}</span>
-                <button onClick={() => addToCart(item)}>Add to cart</button>
-              </CardInfo>
-            </Card>
-          </SplideSlide>
-        ))}
-      </Splide>
+              gap: "3rem",
+              drag: "free",
+              pagination: false,
+            }}
+          >
+            {popularData.map((item) => (
+              <SplideSlide key={item.id}>
+                <Card>
+                  <Link to={"/singleItem/" + item.id}>
+                    <img src={item.image} alt={item.title} />
+                    <p>{item.title}</p>
+                  </Link>
+                  <CardInfo>
+                    <span>${item.pricePerServing}</span>
+                    <button onClick={() => addToCart(item)}>Add to cart</button>
+                  </CardInfo>
+                </Card>
+              </SplideSlide>
+            ))}
+          </Splide>
+        </>
+      )}
     </Container>
   );
 }
