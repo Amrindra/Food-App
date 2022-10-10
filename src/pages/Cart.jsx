@@ -225,7 +225,6 @@ const BottomWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  height: 40vh;
 
   @media only screen and (max-width: 580px) {
     align-items: center;
