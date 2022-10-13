@@ -42,10 +42,10 @@ const Payment = () => {
       cardValues.expDate.length === 0
     ) {
       setErrorMsg(true);
+    } else {
+      // VERIFYING PAYMENT
+      setVerifyingPayment(true);
     }
-
-    // VERIFYING PAYMENT
-    setVerifyingPayment(true);
   };
 
   // function format(splitDigit) {
