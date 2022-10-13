@@ -13,11 +13,11 @@ function Popular() {
   const { addToCart } = useContext(CartContext);
 
   const getPopularAPIData = async () => {
-    // Checking local storage in the browser
+    // Checking local storage in the browser and give popular name
     const checkLocalStorage = localStorage.getItem("popular");
 
     // checking if there is any items in the local storage which is in the browser so we don't have to fetch the API
-    // In the localStorage we can only store string that's why we used .parse
+    // In the localStorage we can only store string that's why we used .parse() method
     if (checkLocalStorage) {
       setPopularData(JSON.parse(checkLocalStorage));
     } else {
@@ -27,7 +27,7 @@ function Popular() {
         );
         const data = await apiRes.json();
 
-        // Converting data JS object to JSON
+        // Converting data JS object to JSON in the localStorage (It's in the browser)
         localStorage.setItem("popular", JSON.stringify(data.recipes));
         setPopularData(data.recipes);
         // console.log(data.recipes);
@@ -46,6 +46,7 @@ function Popular() {
   return (
     <Container>
       <h3>Our Today Selection</h3>
+      {/* Giving a condition for loading */}
       {isLoading ? (
         <span>Loading....</span>
       ) : (
@@ -146,11 +147,11 @@ const CardInfo = styled.div`
     color: var(--dark-color);
     background: none;
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 500;
     padding: 0.3rem 1.5rem;
     border-radius: 1rem;
     text-transform: capitalize;
-    border: 1px solid black;
+    border: 2px solid black;
 
     &:hover {
       background: var(--dark-color);

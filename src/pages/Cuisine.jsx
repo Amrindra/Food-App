@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useContext } from "react";
 import { CartContext } from "../context/CartStateProvider";
+import { BeatLoader } from "react-spinners";
 
 const Cuisine = () => {
   const [cuisineData, setCuisineData] = useState([]);
@@ -39,7 +40,9 @@ const Cuisine = () => {
   return (
     <CuisineGridStyled>
       {isLoading ? (
-        <span>Loading....</span>
+        <Loading>
+          <BeatLoader color="#313131" />
+        </Loading>
       ) : (
         <>
           {/* item.pricePerServing = 12.0 = This line of code is used to add price into the cartItems when we add to cart button. Because the api does not have the price for this request */}
@@ -68,6 +71,12 @@ const CuisineGridStyled = styled.div`
   grid-gap: 3rem;
   margin-top: 4rem;
   margin-bottom: 2rem;
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Card = styled.div`
