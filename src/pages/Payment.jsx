@@ -21,7 +21,7 @@ const Payment = () => {
     cvv: "",
   });
   const [errorMsg, setErrorMsg] = useState(false);
-  const [verifyingPayment, setVerifyingPayment] = useState(true);
+  const [verifyingPayment, setVerifyingPayment] = useState(false);
 
   // This from the context API
   const { cartItems, removeItem } = useContext(CartContext);
@@ -44,14 +44,6 @@ const Payment = () => {
       setErrorMsg(true);
     }
 
-    const creditPattern = "[0-9s]{13,19}";
-
-    if (!creditPattern.test(cardValues.cardNumber)) {
-      setErrorMsg(true);
-    }
-
-    console.log(cardValues.cardNumber);
-
     // VERIFYING PAYMENT
     setVerifyingPayment(true);
   };
@@ -62,11 +54,6 @@ const Payment = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // const creditPattern = "[0-9s]{13,19}";
-
-    // if (!creditPattern.test(cardValues.cardNumber)) {
-    //   setErrorMsg(true);
-    // }
 
     setCardValue({ ...cardValues, [name]: value });
 
@@ -74,11 +61,11 @@ const Payment = () => {
   };
 
   return (
-    <Container>
+    <>
       {verifyingPayment ? (
         <VerifyingPayment />
       ) : (
-        <>
+        <Container>
           <Form onSubmit={handleSubmit}>
             <h3>
               <GrSecure />
@@ -208,9 +195,9 @@ const Payment = () => {
               </Total>
             </TotalSection>
           )}
-        </>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 
