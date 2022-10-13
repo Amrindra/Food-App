@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { useContext } from "react";
 import { CartContext } from "../context/CartStateProvider";
+import VerifyingPayment from "../components/VerifyingPayment";
 
 const Payment = () => {
   const [cardValues, setCardValue] = useState({
@@ -20,7 +21,9 @@ const Payment = () => {
     cvv: "",
   });
   const [errorMsg, setErrorMsg] = useState(false);
+  const [verifyingPayment, setVerifyingPayment] = useState(true);
 
+  // This from the context API
   const { cartItems, removeItem } = useContext(CartContext);
 
   const subtotal = cartItems.reduce(
@@ -48,6 +51,9 @@ const Payment = () => {
     }
 
     console.log(cardValues.cardNumber);
+
+    // VERIFYING PAYMENT
+    setVerifyingPayment(true);
   };
 
   // function format(splitDigit) {
@@ -69,134 +75,140 @@ const Payment = () => {
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
-        <h3>
-          <GrSecure />
-          Payment
-        </h3>
-        <InputFieldWrapper>
-          <InputField>
-            <label htmlFor="name">Card Holder's Name</label>
-            <input
-              type="text"
-              placeholder="Name"
-              name="cardHolderName"
-              value={cardValues.cardHolderName}
-              onChange={handleChange}
-            />
-          </InputField>
+      {verifyingPayment ? (
+        <VerifyingPayment />
+      ) : (
+        <>
+          <Form onSubmit={handleSubmit}>
+            <h3>
+              <GrSecure />
+              Payment
+            </h3>
+            <InputFieldWrapper>
+              <InputField>
+                <label htmlFor="name">Card Holder's Name</label>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  name="cardHolderName"
+                  value={cardValues.cardHolderName}
+                  onChange={handleChange}
+                />
+              </InputField>
 
-          {/* If errorMsg is true and input field is blank it will show error messages if user hits the submit buton*/}
-          {errorMsg && cardValues.cardHolderName.length <= 0 ? (
-            <ErrorMessage>Card Holder's Name Cannot Be Blank</ErrorMessage>
-          ) : (
-            ""
-          )}
-
-          <InputField>
-            <label htmlFor="cardnumber">Card Number</label>
-            <input
-              type="text"
-              placeholder="Ex. 1234 5678 1234 1234"
-              name="cardNumber"
-              value={cardValues.cardNumber}
-              onChange={handleChange}
-              maxLength={16}
-              min={0}
-              pattern="[0-9s]{13,19}"
-            />
-
-            {errorMsg ? (
-              <></>
-            ) : (
-              <Icon>
-                <AiOutlineCreditCard />
-              </Icon>
-            )}
-          </InputField>
-
-          {errorMsg && cardValues.cardNumber.length <= 0 ? (
-            <ErrorMessage>Card Number Cannot Be Blank</ErrorMessage>
-          ) : (
-            ""
-          )}
-
-          <InputFieldBottom>
-            <Wrapper>
-              <label htmlFor="date">Expiration Date</label>
-              <input
-                type="text"
-                placeholder="MM/DD/YYYY"
-                name="expDate"
-                value={cardValues.expDate}
-                onChange={handleChange}
-                onFocus={(e) => (e.target.type = "date")}
-                onBlur={(e) => (e.target.type = "text")}
-              />
-              {errorMsg && cardValues.expDate.length <= 0 ? (
-                <ErrorMessage>Expiration Date Cannot Be Blank</ErrorMessage>
+              {/* If errorMsg is true and input field is blank it will show error messages if user hits the submit buton*/}
+              {errorMsg && cardValues.cardHolderName.length <= 0 ? (
+                <ErrorMessage>Card Holder's Name Cannot Be Blank</ErrorMessage>
               ) : (
                 ""
               )}
-            </Wrapper>
 
-            <Wrapper>
-              <label htmlFor="cvv">CVV</label>
-              <input
-                type="text"
-                placeholder="Code"
-                name="cvv"
-                value={cardValues.cvv}
-                onChange={handleChange}
-                maxLength={3}
-                min={0}
-                pattern="\d*"
-              />
+              <InputField>
+                <label htmlFor="cardnumber">Card Number</label>
+                <input
+                  type="text"
+                  placeholder="Ex. 1234 5678 1234 1234"
+                  name="cardNumber"
+                  value={cardValues.cardNumber}
+                  onChange={handleChange}
+                  maxLength={16}
+                  min={0}
+                  pattern="[0-9s]{13,19}"
+                />
 
-              {errorMsg && cardValues.cvv.length <= 0 ? (
-                <ErrorMessage>CVV Cannot Be Blank</ErrorMessage>
+                {errorMsg ? (
+                  <></>
+                ) : (
+                  <Icon>
+                    <AiOutlineCreditCard />
+                  </Icon>
+                )}
+              </InputField>
+
+              {errorMsg && cardValues.cardNumber.length <= 0 ? (
+                <ErrorMessage>Card Number Cannot Be Blank</ErrorMessage>
               ) : (
                 ""
               )}
-            </Wrapper>
-          </InputFieldBottom>
-        </InputFieldWrapper>
 
-        {/* if cart is empty then disable the button */}
-        <button disabled={cartItems.length <= 0}>Place Your Order</button>
+              <InputFieldBottom>
+                <Wrapper>
+                  <label htmlFor="date">Expiration Date</label>
+                  <input
+                    type="text"
+                    placeholder="MM/DD/YYYY"
+                    name="expDate"
+                    value={cardValues.expDate}
+                    onChange={handleChange}
+                    onFocus={(e) => (e.target.type = "date")}
+                    onBlur={(e) => (e.target.type = "text")}
+                  />
+                  {errorMsg && cardValues.expDate.length <= 0 ? (
+                    <ErrorMessage>Expiration Date Cannot Be Blank</ErrorMessage>
+                  ) : (
+                    ""
+                  )}
+                </Wrapper>
 
-        <CreditCardGroup>
-          <p>We accept the following cards</p>
-          <CreditCardIconsWrapper>
-            <FaCcDiscover />
-            <FaCcMastercard />
-            <FaCcVisa />
-            <FaCcPaypal />
-          </CreditCardIconsWrapper>
-        </CreditCardGroup>
-      </Form>
+                <Wrapper>
+                  <label htmlFor="cvv">CVV</label>
+                  <input
+                    type="text"
+                    placeholder="Code"
+                    name="cvv"
+                    value={cardValues.cvv}
+                    onChange={handleChange}
+                    maxLength={3}
+                    min={0}
+                    pattern="\d*"
+                  />
 
-      {/* If cartItems is empty do not show the the order details */}
-      {cartItems.length > 0 && (
-        <TotalSection>
-          <h3>ORDER DETAILS</h3>
-          <hr />
+                  {errorMsg && cardValues.cvv.length <= 0 ? (
+                    <ErrorMessage>CVV Cannot Be Blank</ErrorMessage>
+                  ) : (
+                    ""
+                  )}
+                </Wrapper>
+              </InputFieldBottom>
+            </InputFieldWrapper>
 
-          <OrderDetailWrapper>
-            {cartItems?.map((item) => (
-              <OrderList key={item.id}>
-                <img src={item.image} alt={item.title} />
-                <button onClick={() => removeItem(item.id)}>Delete</button>
-                <p>${item.pricePerServing}</p>
-              </OrderList>
-            ))}
-          </OrderDetailWrapper>
-          <hr />
-          <Total>
-            <p>Total: </p>
-            <p>${subtotal.toFixed(2)}</p>
-          </Total>
-        </TotalSection>
+            {/* if cart is empty then disable the button */}
+            <button disabled={cartItems.length <= 0}>Place Your Order</button>
+
+            <CreditCardGroup>
+              <p>We accept the following cards</p>
+              <CreditCardIconsWrapper>
+                <FaCcDiscover />
+                <FaCcMastercard />
+                <FaCcVisa />
+                <FaCcPaypal />
+              </CreditCardIconsWrapper>
+            </CreditCardGroup>
+          </Form>
+
+          {/* If cartItems is empty do not show the the order details */}
+          {cartItems.length > 0 && (
+            <TotalSection>
+              <h3>ORDER DETAILS</h3>
+              <hr />
+
+              <OrderDetailWrapper>
+                {cartItems?.map((item) => (
+                  <OrderList key={item.id}>
+                    <img src={item.image} alt={item.title} />
+                    <button onClick={() => removeItem(item.id)}>Delete</button>
+                    <p>${item.pricePerServing}</p>
+                  </OrderList>
+                ))}
+              </OrderDetailWrapper>
+              <hr />
+              <Total>
+                <p>Total: </p>
+                <p>${subtotal.toFixed(2)}</p>
+              </Total>
+            </TotalSection>
+          )}
+        </>
       )}
     </Container>
   );
