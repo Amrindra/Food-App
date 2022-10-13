@@ -31,7 +31,7 @@ const Cuisine = () => {
     }
   };
 
-  console.log("Cuisine: " + cuisineData);
+  // console.log("Cuisine: " + cuisineData);
 
   useEffect(() => {
     getCuisineData(params.type);

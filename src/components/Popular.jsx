@@ -5,6 +5,7 @@ import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartStateProvider";
+import { BeatLoader } from "react-spinners";
 
 function Popular() {
   const [popularData, setPopularData] = useState([]);
@@ -48,7 +49,9 @@ function Popular() {
       <h3>Our Today Selection</h3>
       {/* Giving a condition for loading */}
       {isLoading ? (
-        <span>Loading....</span>
+        <Loading>
+          <BeatLoader color="#313131" />
+        </Loading>
       ) : (
         <>
           {/* Splide is a React library for Images slider */}
@@ -105,6 +108,12 @@ const Container = styled.div`
       margin: 2rem;
     }
   }
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Card = styled.div`

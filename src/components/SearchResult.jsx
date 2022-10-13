@@ -3,9 +3,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { CartContext } from "../context/CartStateProvider";
+import { BeatLoader } from "react-spinners";
 
 const SearchResult = () => {
   const [searchResultData, setSearchResultData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { addToCart } = useContext(CartContext);
 
@@ -20,6 +22,8 @@ const SearchResult = () => {
       );
       // const recipes = await resData.json();
       setSearchResultData(resData.data.results);
+
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -32,19 +36,27 @@ const SearchResult = () => {
 
   return (
     <CuisineGridStyled>
-      {searchResultData.map((item) => {
-        item.pricePerServing = 12.0;
-        return (
-          <Card key={item.id}>
-            <Link to={"/singleItem/" + item.id}>
-              <img src={item.image} alt={item.title} />
-              <h4>{item.title}</h4>
-            </Link>
-            <span>$12.00 Fixed Price</span>
-            <button onClick={() => addToCart(item)}>Order Me</button>
-          </Card>
-        );
-      })}
+      {isLoading ? (
+        <Loading>
+          <BeatLoader color="#313131" />
+        </Loading>
+      ) : (
+        <>
+          {searchResultData.map((item) => {
+            item.pricePerServing = 12.0;
+            return (
+              <Card key={item.id}>
+                <Link to={"/singleItem/" + item.id}>
+                  <img src={item.image} alt={item.title} />
+                  <h4>{item.title}</h4>
+                </Link>
+                <span>$12.00 Fixed Price</span>
+                <button onClick={() => addToCart(item)}>Order Me</button>
+              </Card>
+            );
+          })}
+        </>
+      )}
     </CuisineGridStyled>
   );
 };
@@ -54,6 +66,12 @@ const CuisineGridStyled = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 3rem;
   margin-top: 3rem;
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Card = styled.div`
