@@ -47,6 +47,7 @@ const BannerStyled = styled.div`
   div {
     svg {
       margin-top: -3rem;
+      border-radius: 0.5rem;
     }
   }
 `;
