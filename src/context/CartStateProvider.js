@@ -28,6 +28,10 @@ function CartStateProvider({ children }) {
     dispatch({ type: "DECREASE", payload: item });
   };
 
+  const clearCart = () => {
+    dispatch({ type: "CLEARCART" });
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -36,6 +40,7 @@ function CartStateProvider({ children }) {
         removeItem,
         increaseQty,
         decreaseQty,
+        clearCart,
       }}
     >
       {children}

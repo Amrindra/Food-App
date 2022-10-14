@@ -46,6 +46,9 @@ const CartReducer = (state, action) => {
         cartItems: [...state.cartItems],
       };
 
+    case "CLEARCART":
+      return { cartItems: [] };
+
     default:
       return state;
   }

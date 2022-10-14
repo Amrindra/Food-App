@@ -10,14 +10,14 @@ import { CartContext } from "../context/CartStateProvider";
 const VerifyingPayment = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { cartItems } = useContext(CartContext);
+  const { clearCart } = useContext(CartContext);
 
   useEffect(() => {
     setIsLoading(true);
 
     setTimeout(() => {
       setIsLoading(false);
-      // cartItems = [];
+      clearCart();
     }, 5000);
   }, []);
 
