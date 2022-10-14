@@ -38,7 +38,7 @@ const CategoryListItem = styled.div`
   justify-content: center;
   align-items: center;
   position: sticky;
-  top: 50px;
+  top: 60px;
   z-index: 99;
 
   /* @media only screen and (max-width: 580px) {
@@ -52,9 +52,9 @@ const Wrapper = styled.div`
   align-items: center;
   background-color: lightgray;
   width: 50%;
-  height: 6rem;
+  height: 4.5rem;
   border-radius: 50px;
-  margin-top: 4rem;
+  margin-top: 2rem;
 
   @media only screen and (max-width: 580px) {
     width: 100%;
@@ -71,13 +71,14 @@ const CategoryLink = styled(NavLink)`
   border-radius: 50%;
   text-decoration: none;
   background: linear-gradient(35deg, #494949, #313131);
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
   cursor: pointer;
   transform: scale(0.8);
 
   h4 {
     color: white;
+    font-size: 0.9rem;
   }
 
   svg {
