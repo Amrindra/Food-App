@@ -4,23 +4,46 @@ import styled from "styled-components";
 const Banner = () => {
   return (
     <BannerStyled>
-      <img
-        src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-        alt=""
-      />
+      <Wrapper>
+        <Intro>
+          <h3>Best Food App On The Internet</h3>
+        </Intro>
+        <ImageWrapper>
+          <img
+            src="https://www.freepnglogos.com/uploads/food-png/true-food-kitchen-35.png"
+            alt=""
+          />
+        </ImageWrapper>
+      </Wrapper>
     </BannerStyled>
   );
 };
 
 const BannerStyled = styled.div`
+  margin-top: 3rem;
   width: 100%;
+  background-color: #e6eded;
+  border-radius: 0.5rem;
+  height: 50vh;
+`;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+`;
+
+const Intro = styled.div`
+  /* flex: 1; */
+`;
+const ImageWrapper = styled.div`
   img {
+    /* clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%); */
     object-fit: cover;
     width: 100%;
-    height: 35rem;
-    border-radius: 1rem;
-    margin-top: 3rem;
+    /* border-radius: 1rem; */
   }
 
   @media only screen and (max-width: 580px) {

@@ -97,7 +97,7 @@ function Popular() {
 
 const Container = styled.div`
   h3 {
-    margin: 3rem 3rem;
+    margin: 4rem 0 2rem;
   }
 
   @media only screen and (max-width: 580px) {

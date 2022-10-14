@@ -27,6 +27,7 @@ const Container = styled.div`
   align-items: center;
   margin-top: 4rem;
   height: 20vh;
+  width: 100%;
 `;
 
 const SocialIcons = styled.div`
