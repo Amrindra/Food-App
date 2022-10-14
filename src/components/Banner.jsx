@@ -6,7 +6,10 @@ const Banner = () => {
     <BannerStyled>
       <Wrapper>
         <Intro>
-          <h3>Best Food App On The Internet.</h3>
+          <h3>Best Food App On</h3>
+          <h3>
+            The <span>Internet.</span>
+          </h3>
         </Intro>
         <ImageWrapper>
           <img
@@ -16,7 +19,11 @@ const Banner = () => {
         </ImageWrapper>
       </Wrapper>
       <div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320 "
+          preserveAspectRatio="none"
+        >
           <path
             fill="#313131"
             fill-opacity="1"
@@ -33,6 +40,9 @@ const BannerStyled = styled.div`
   width: 100%;
   background-color: #e6eded;
   border-radius: 0.5rem;
+  box-shadow: -2px 1px 12px 2px rgba(0, 0, 0, 0.86);
+  -webkit-box-shadow: -2px 1px 12px 2px rgba(0, 0, 0, 0.86);
+  -moz-box-shadow: -2px 1px 12px 2px rgba(0, 0, 0, 0.86);
 
   div {
     svg {
@@ -50,18 +60,27 @@ const Wrapper = styled.div`
 `;
 
 const Intro = styled.div`
-  h3 {
+  width: 700px;
+  h3,
+  span {
     font-family: "Aclonica", sans-serif;
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: 300;
+    margin-top: 1rem;
+    text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  span {
+    color: red;
   }
 `;
+
 const ImageWrapper = styled.div`
+  /* flex: 1; */
+
   img {
-    /* clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%); */
     object-fit: cover;
     width: 100%;
-    /* border-radius: 1rem; */
   }
 
   @media only screen and (max-width: 580px) {
