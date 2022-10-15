@@ -10,7 +10,7 @@ import { CartContext } from "../context/CartStateProvider";
 const VerifyingPayment = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { clearCart } = useContext(CartContext);
+  const { clearCart, cartItems } = useContext(CartContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -37,7 +37,15 @@ const VerifyingPayment = () => {
           </>
         ) : (
           <ThankYouForYourShopping>
-            <p>Thank you for your payment!</p>
+            <p style={{ marginBottom: "2rem" }}>Thank you for your payment.</p>
+
+            {/*Checking if the order is only one show only singular message otherwise show plural*/}
+            {cartItems.length < 2 ? (
+              <p>Your order has been placed!</p>
+            ) : (
+              <p>Your orders have been placed!</p>
+            )}
+
             <Link to="/">
               <button>Continue Shopping</button>
             </Link>
@@ -97,7 +105,7 @@ const ThankYouForYourShopping = styled.div`
     color: white;
     width: 200px;
     height: 40px;
-    margin-top: 2rem;
+    margin-top: 3rem;
     font-size: 1.2rem;
 
     &:hover {
