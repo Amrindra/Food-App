@@ -8,6 +8,16 @@ const Category = () => {
   return (
     <CategoryListItem>
       <Wrapper>
+        <CategoryLink to="/cuisine/American">
+          <FaHamburger />
+          <h4>American</h4>
+        </CategoryLink>
+
+        <CategoryLink to="/cuisine/italian">
+          <FaPizzaSlice />
+          <h4>Italian</h4>
+        </CategoryLink>
+
         <CategoryLink to="/cuisine/chinese">
           <GiNoodles />
           <h4>Chinese</h4>
@@ -16,16 +26,6 @@ const Category = () => {
         <CategoryLink to="/cuisine/vietnamese">
           <GiChopsticks />
           <h4>Vietnames</h4>
-        </CategoryLink>
-
-        <CategoryLink to="/cuisine/italian">
-          <FaPizzaSlice />
-          <h4>Italian</h4>
-        </CategoryLink>
-
-        <CategoryLink to="/cuisine/American">
-          <FaHamburger />
-          <h4>American</h4>
         </CategoryLink>
       </Wrapper>
     </CategoryListItem>
@@ -48,7 +48,7 @@ const CategoryListItem = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   background-color: lightgray;
   width: 50%;
@@ -70,24 +70,28 @@ const CategoryLink = styled(NavLink)`
   align-items: center;
   border-radius: 50%;
   text-decoration: none;
-  background: linear-gradient(35deg, #494949, #313131);
+  /* background: linear-gradient(35deg, #494949, #313131); */
   width: 5rem;
   height: 5rem;
   cursor: pointer;
   transform: scale(0.8);
 
   h4 {
-    color: white;
-    font-size: 0.9rem;
+    color: #313131;
+    font-size: 1.2rem;
   }
 
   svg {
-    color: white;
-    font-size: 1.5rem;
+    color: #313131;
+    font-size: 2rem;
   }
 
   &.active {
-    background: linear-gradient(to right, #dddddd, #a68dad);
+    /* background: linear-gradient(to right, #dddddd, #a68dad); */
+    h4,
+    svg {
+      color: green;
+    }
   }
 
   @media only screen and (max-width: 580px) {

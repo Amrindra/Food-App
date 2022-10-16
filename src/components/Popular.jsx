@@ -11,7 +11,14 @@ function Popular() {
   const [popularData, setPopularData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cartItems } = useContext(CartContext);
+
+  const isAddToCart = cartItems.map((p) => p.id);
+  // const popularItem = popularData.filter((prod) => prod.id);
+  console.log("isAdd =>" + isAddToCart);
+
+  console.log(cartItems);
+  // console.log(isAddToCart === popularItem);
 
   const getPopularAPIData = async () => {
     // Checking local storage in the browser and give popular name
@@ -83,7 +90,20 @@ function Popular() {
                   </Link>
                   <CardInfo>
                     <span>${item.pricePerServing}</span>
-                    <button onClick={() => addToCart(item)}>Add to cart</button>
+                    {isAddToCart === item.id ? (
+                      <button onClick={() => addToCart(item)}>
+                        Remove from cart
+                      </button>
+                    ) : (
+                      <button onClick={() => addToCart(item)}>
+                        Add to cart
+                      </button>
+                    )}
+
+                    {console.log(isAddToCart === item.id)}
+                    {console.log(item.id)}
+
+                    {/* <button onClick={() => addToCart(item)}>Add to cart</button> */}
                   </CardInfo>
                 </Card>
               </SplideSlide>

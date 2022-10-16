@@ -204,11 +204,13 @@ const Payment = () => {
 const Container = styled.div`
   display: flex;
   gap: 2rem;
-  background-color: white;
+  /* background: rgba(0, 0, 0, 0.7); */
+  /* backdrop-filter: blur(10px); */
   padding: 30px;
   margin-top: 4rem;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 
   @media only screen and (max-width: 580px) {
     flex-direction: column-reverse;

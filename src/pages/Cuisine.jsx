@@ -123,7 +123,8 @@ const Card = styled.div`
     button {
       opacity: 100;
       cursor: pointer;
-      background-color: var(--dark-color);
+      /* background-color: var(--dark-color); */
+      backdrop-filter: blur(10px);
     }
 
     span {
