@@ -18,7 +18,7 @@ const VerifyingPayment = () => {
     setTimeout(() => {
       setIsLoading(false);
       clearCart();
-    }, 5000);
+    }, 3000);
   }, []);
 
   return (
@@ -26,18 +26,18 @@ const VerifyingPayment = () => {
       <Wrapper>
         {isLoading ? (
           <>
-            <Top>
+            <Loading>
+              <GridLoader color="#313131" margin={5} />
+            </Loading>
+
+            <VerifyStatus>
               <h6>Verifying payment</h6>
               <PulseLoader color="#313131" size={3} />
-            </Top>
-
-            <div>
-              <GridLoader color="#36d7b7" margin={5} />
-            </div>
+            </VerifyStatus>
           </>
         ) : (
           <ThankYouForYourShopping>
-            <p style={{ marginBottom: "2rem" }}>Thank you for your payment.</p>
+            <p style={{ marginTop: "2rem" }}>Thank you for your payment.</p>
 
             {/*Checking if the order is only one show only singular message otherwise show plural*/}
             {cartItems.length < 2 ? (
@@ -71,11 +71,15 @@ const Wrapper = styled.div`
   border-radius: 5px;
 
   div {
-    margin-top: 2rem;
+    /* margin-top: 2rem;  */
   }
 `;
 
-const Top = styled.div`
+const Loading = styled.div`
+  margin: 3rem 0;
+`;
+
+const VerifyStatus = styled.div`
   display: flex;
   justify-content: center;
   align-items: baseline;

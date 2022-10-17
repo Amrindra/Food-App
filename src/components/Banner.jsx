@@ -66,6 +66,7 @@ const Wrapper = styled.div`
 
 const Intro = styled.div`
   width: 700px;
+
   h3,
   span {
     font-family: "Aclonica", sans-serif;
@@ -89,6 +90,17 @@ const Intro = styled.div`
       text-shadow: none;
     }
   }
+
+  @media only screen and (max-width: 880px) {
+    width: 800px;
+
+    h3,
+    span {
+      font-size: 1.7rem;
+      text-align: center;
+      text-shadow: none;
+    }
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -101,8 +113,9 @@ const ImageWrapper = styled.div`
 
   @media only screen and (max-width: 580px) {
     img {
-      height: 15rem;
-      border-radius: 0;
+      /* height: 15rem; */
+      /* width: 70%; */
+      margin: 1rem 0;
     }
   }
 `;
