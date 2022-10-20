@@ -92,8 +92,6 @@ const Intro = styled.div`
   }
 
   @media only screen and (max-width: 880px) {
-    width: 800px;
-
     h3,
     span {
       font-size: 1.7rem;

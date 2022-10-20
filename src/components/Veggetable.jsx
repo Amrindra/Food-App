@@ -46,7 +46,7 @@ function Veggetable() {
             1024: {
               perPage: 3,
             },
-            767: {
+            880: {
               perPage: 2,
             },
             640: {
@@ -54,7 +54,7 @@ function Veggetable() {
             },
           },
           perPage: 4,
-          gap: "2rem",
+          gap: "1rem",
           drag: "free",
           pagination: false,
         }}
@@ -107,6 +107,10 @@ const Card = styled.div`
   overflow: hidden;
   position: relative;
   border: 0.3rem solid white;
+  margin: 1rem;
+  -webkit-box-shadow: 7px 7px 5px -1px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 7px 7px 5px -1px rgba(0, 0, 0, 0.45);
+  box-shadow: 7px 7px 5px -1px rgba(0, 0, 0, 0.45);
 
   img {
     width: 100%;

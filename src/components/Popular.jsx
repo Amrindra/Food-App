@@ -67,9 +67,11 @@ function Popular() {
               breakpoints: {
                 1024: {
                   perPage: 3,
+                  gap: "1rem",
                 },
-                767: {
+                880: {
                   perPage: 2,
+                  gap: "1rem",
                 },
                 640: {
                   perPage: 1,
@@ -139,7 +141,11 @@ const Loading = styled.div`
 const Card = styled.div`
   min-height: 20rem;
   overflow: hidden;
+  margin: 1.2rem;
   background-color: rgba(243, 239, 241, 0.9);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.55);
 
   img {
     width: 100%;
