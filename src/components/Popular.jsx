@@ -15,9 +15,9 @@ function Popular() {
 
   const isAddToCart = cartItems.map((p) => p.id);
   // const popularItem = popularData.filter((prod) => prod.id);
-  console.log("isAdd =>" + isAddToCart);
+  // console.log("isAdd =>" + isAddToCart);
 
-  console.log(cartItems);
+  // console.log(cartItems);
   // console.log(isAddToCart === popularItem);
 
   const getPopularAPIData = async () => {
@@ -101,9 +101,6 @@ function Popular() {
                         Add to cart
                       </button>
                     )}
-
-                    {console.log(isAddToCart === item.id)}
-                    {console.log(item.id)}
 
                     {/* <button onClick={() => addToCart(item)}>Add to cart</button> */}
                   </CardInfo>

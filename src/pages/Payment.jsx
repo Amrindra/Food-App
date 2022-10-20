@@ -253,6 +253,7 @@ const Form = styled.form`
     &:disabled {
       background: #dddddd;
       cursor: not-allowed;
+      color: gray;
     }
   }
 
@@ -305,6 +306,9 @@ const InputField = styled.div`
   }
 
   @media only screen and (max-width: 580px) {
+    margin-top: 1px;
+    height: 75px;
+
     label {
       font-size: 1rem;
     }
@@ -351,6 +355,14 @@ const Wrapper = styled.div`
 
     &::placeholder {
       color: gray;
+    }
+  }
+
+  @media only screen and (max-width: 580px) {
+    margin-top: 5px;
+
+    label {
+      font-size: 1rem;
     }
   }
 `;
@@ -459,6 +471,14 @@ const Icon = styled.div`
   position: absolute;
   right: 10px;
   bottom: 96px;
+
+  @media only screen and (max-width: 580px) {
+    bottom: 162px;
+
+    svg {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 export default Payment;

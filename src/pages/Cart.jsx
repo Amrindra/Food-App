@@ -28,48 +28,52 @@ const Cart = () => {
       ) : (
         <TableContainer>
           <Table>
-            <tr
-              style={{
-                backgroundColor: "gray",
-                color: "white",
-              }}
-            >
-              <th>Product</th>
-              <th>Prices</th>
-              <th>QTY</th>
-              <th>Total</th>
-            </tr>
-            {cartItems?.map((item) => (
-              <tr key={item.id}>
-                <Td>
-                  <button onClick={() => removeItem(item.id)}>X</button>
-                  <img src={item.image} alt={item.title} />
-                  <h3>{item.title}</h3>
-                  <p>ID: {item.id}</p>
-                </Td>
-                <td>
-                  <p style={{ textAlign: "center" }}>${item.pricePerServing}</p>
-                </td>
-                <td>
-                  <QtyWrapper>
-                    <AiFillMinusSquare
-                      onClick={
-                        item.qty > 1
-                          ? () => decreaseQty(item)
-                          : () => removeItem(item.id)
-                      }
-                    />
-                    <p>{item.qty}</p>
-
-                    <AiFillPlusSquare onClick={() => increaseQty(item)} />
-                  </QtyWrapper>
-                </td>
-
-                <td style={{ textAlign: "center" }}>
-                  ${(item.pricePerServing * item.qty).toFixed(2)}
-                </td>
+            <tbody>
+              <tr
+                style={{
+                  backgroundColor: "gray",
+                  color: "white",
+                }}
+              >
+                <th>Product</th>
+                <th>Prices</th>
+                <th>QTY</th>
+                <th>Total</th>
               </tr>
-            ))}
+              {cartItems?.map((item) => (
+                <tr key={item.id}>
+                  <Td>
+                    <button onClick={() => removeItem(item.id)}>X</button>
+                    <img src={item.image} alt={item.title} />
+                    <h3>{item.title}</h3>
+                    <p>ID: {item.id}</p>
+                  </Td>
+                  <td>
+                    <p style={{ textAlign: "center" }}>
+                      ${item.pricePerServing}
+                    </p>
+                  </td>
+                  <td>
+                    <QtyWrapper>
+                      <AiFillMinusSquare
+                        onClick={
+                          item.qty > 1
+                            ? () => decreaseQty(item)
+                            : () => removeItem(item.id)
+                        }
+                      />
+                      <p>{item.qty}</p>
+
+                      <AiFillPlusSquare onClick={() => increaseQty(item)} />
+                    </QtyWrapper>
+                  </td>
+
+                  <td style={{ textAlign: "center" }}>
+                    ${(item.pricePerServing * item.qty).toFixed(2)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </Table>
           <BottomWrapper>
             <Subtotal>Subtotal: ${subtotal.toFixed(2)}</Subtotal>
