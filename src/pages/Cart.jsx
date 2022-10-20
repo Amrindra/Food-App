@@ -196,7 +196,7 @@ const Td = styled.td`
   @media only screen and (max-width: 580px) {
     button {
       left: 105px;
-      top: -7px;
+      top: 1px;
     }
   }
 `;
@@ -217,6 +217,13 @@ const EmptyCart = styled.div`
       cursor: pointer;
       background-color: black;
       color: white;
+    }
+  }
+
+  @media only screen and (max-width: 580px) {
+    h3 {
+      font-size: 2rem;
+      font-weight: 300;
     }
   }
 `;
