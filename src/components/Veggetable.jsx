@@ -77,7 +77,7 @@ function Veggetable() {
               pagination: false,
             }}
           >
-            {veggie.map((item) => (
+            {veggie?.map((item) => (
               <SplideSlide key={item.id}>
                 <Card>
                   <Link to={"/singleItem/" + item.id}>

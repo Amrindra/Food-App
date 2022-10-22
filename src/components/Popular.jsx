@@ -84,7 +84,7 @@ function Popular() {
               pagination: false,
             }}
           >
-            {popularData.map((item) => (
+            {popularData?.map((item) => (
               <SplideSlide key={item.id}>
                 <Card>
                   <Link to={"/singleItem/" + item.id}>
