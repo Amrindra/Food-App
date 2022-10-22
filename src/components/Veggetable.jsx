@@ -5,31 +5,41 @@ import "@splidejs/react-splide/css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartStateProvider";
+import { BeatLoader } from "react-spinners";
 
 function Veggetable() {
   const [veggie, setVeggie] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { addToCart } = useContext(CartContext);
 
   const getVeggieData = async () => {
     // Checking local storage in the browser
-    const checkLocalStorage = localStorage.getItem("veggie");
+    // const checkLocalStorage = localStorage.getItem("veggie");
 
     // checking if there is any items in the local storage which is in the browser we don't have to fetch the API
     // In the localStorage we can only store string that's why we used .parse
-    if (checkLocalStorage) {
-      setVeggie(JSON.parse(checkLocalStorage));
-    } else {
+    // if (checkLocalStorage) {
+    //   setVeggie(JSON.parse(checkLocalStorage));
+    // } else {
+
+    try {
       const apiRes = await fetch(
         `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
       );
       const data = await apiRes.json();
 
       // Converting data JS object to JSON
-      localStorage.setItem("veggie", JSON.stringify(data.recipes));
+      // localStorage.setItem("veggie", JSON.stringify(data.recipes));
+
       setVeggie(data.recipes);
-      console.log(data.recipes);
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
     }
+
+    // }
   };
 
   useEffect(() => {
@@ -39,45 +49,57 @@ function Veggetable() {
   return (
     <Container>
       <h3>Our Today Vegetarian Choices</h3>
-      {/* Splide is a React library for Images slider */}
-      <Splide
-        options={{
-          breakpoints: {
-            1024: {
-              perPage: 3,
-            },
-            880: {
-              perPage: 2,
-            },
-            640: {
-              perPage: 1,
-            },
-          },
-          perPage: 4,
-          gap: "1rem",
-          drag: "free",
-          pagination: false,
-        }}
-      >
-        {veggie.map((item) => (
-          <SplideSlide key={item.id}>
-            <Card>
-              <Link to={"/singleItem/" + item.id}>
-                <ImageWrapper>
-                  <img src={item.image} alt={item.title} />
-                </ImageWrapper>
-              </Link>
-              <CardBody>
-                <p>{item.title}</p>
-                <div>
-                  <span>${item.pricePerServing}</span>
-                  <button onClick={() => addToCart(item)}>Add to cart</button>
-                </div>
-              </CardBody>
-            </Card>
-          </SplideSlide>
-        ))}
-      </Splide>
+
+      {/* Giving a condition for loading */}
+      {isLoading ? (
+        <Loading>
+          <BeatLoader color="#313131" />
+        </Loading>
+      ) : (
+        <>
+          {/* Splide is a React library for Images slider */}
+          <Splide
+            options={{
+              breakpoints: {
+                1024: {
+                  perPage: 3,
+                },
+                880: {
+                  perPage: 2,
+                },
+                640: {
+                  perPage: 1,
+                },
+              },
+              perPage: 4,
+              gap: "1rem",
+              drag: "free",
+              pagination: false,
+            }}
+          >
+            {veggie.map((item) => (
+              <SplideSlide key={item.id}>
+                <Card>
+                  <Link to={"/singleItem/" + item.id}>
+                    <ImageWrapper>
+                      <img src={item.image} alt={item.title} />
+                    </ImageWrapper>
+                  </Link>
+                  <CardBody>
+                    <p>{item.title}</p>
+                    <div>
+                      <span>${item.pricePerServing}</span>
+                      <button onClick={() => addToCart(item)}>
+                        Add to cart
+                      </button>
+                    </div>
+                  </CardBody>
+                </Card>
+              </SplideSlide>
+            ))}
+          </Splide>
+        </>
+      )}
     </Container>
   );
 }
@@ -99,6 +121,12 @@ const Container = styled.div`
       margin: 2rem;
     }
   }
+`;
+
+const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Card = styled.div`

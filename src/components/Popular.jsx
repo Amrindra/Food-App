@@ -9,7 +9,7 @@ import { BeatLoader } from "react-spinners";
 
 function Popular() {
   const [popularData, setPopularData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { addToCart, cartItems } = useContext(CartContext);
 
@@ -22,29 +22,30 @@ function Popular() {
 
   const getPopularAPIData = async () => {
     // Checking local storage in the browser and give popular name
-    const checkLocalStorage = localStorage.getItem("popular");
+    // const checkLocalStorage = localStorage.getItem("popular");
 
     // checking if there is any items in the local storage which is in the browser so we don't have to fetch the API
     // In the localStorage we can only store string that's why we used .parse() method
-    if (checkLocalStorage) {
-      setPopularData(JSON.parse(checkLocalStorage));
-    } else {
-      try {
-        const apiRes = await fetch(
-          `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
-        );
-        const data = await apiRes.json();
+    // if (checkLocalStorage) {
+    //   setPopularData(JSON.parse(checkLocalStorage));
+    // } else {
+    try {
+      const apiRes = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
+      );
+      const data = await apiRes.json();
 
-        // Converting data JS object to JSON in the localStorage (It's in the browser)
-        localStorage.setItem("popular", JSON.stringify(data.recipes));
-        setPopularData(data.recipes);
-        // console.log(data.recipes);
+      // Converting data JS object to JSON in the localStorage (It's in the browser)
+      // localStorage.setItem("popular", JSON.stringify(data.recipes));
 
-        setIsLoading(true);
-      } catch (error) {
-        console.log(error);
-      }
+      setPopularData(data.recipes);
+      // console.log(data.recipes);
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
     }
+    // }
   };
 
   useEffect(() => {
