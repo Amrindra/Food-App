@@ -1,3 +1,7 @@
+![food-app3](https://user-images.githubusercontent.com/70451928/197415839-81cc79b7-d60e-4b16-a2fb-db309efb0126.png)
+![food-app1](https://user-images.githubusercontent.com/70451928/197415828-7f3579fe-120a-436d-b42f-f8584284656d.png)
+![food-app2](https://user-images.githubusercontent.com/70451928/197415832-b75d954b-85ec-4384-98da-b188590bd429.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -70,9 +74,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-![food-app3](https://user-images.githubusercontent.com/70451928/197415839-81cc79b7-d60e-4b16-a2fb-db309efb0126.png)
 
-
-
-![food-app1](https://user-images.githubusercontent.com/70451928/197415828-7f3579fe-120a-436d-b42f-f8584284656d.png)
-![food-app2](https://user-images.githubusercontent.com/70451928/197415832-b75d954b-85ec-4384-98da-b188590bd429.png)
