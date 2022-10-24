@@ -37,10 +37,23 @@ app.get("/vegetarian", async (req, res) => {
 });
 
 app.get("/cuisines/:foodQuery", async (req, res) => {
-  // req.params.foodQuery is from the frontend side which is the Cuisine component.
+  // req.params.foodQuery is from the frontend side which is the Cuisine component. When we click on for example: American it will show american food and so on
   try {
     const apiRes = await axios.get(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${req.params.foodQuery}`
+    );
+
+    res.json(apiRes.data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/searchResult/:searchFoodQuery", async (req, res) => {
+  // req.params.foodQuery is from the frontend side which is the Cuisine component. When we click on for example: American it will show american food and so on
+  try {
+    const apiRes = await axios.get(
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${req.params.searchFoodQuery}`
     );
 
     res.json(apiRes.data);

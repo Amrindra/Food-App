@@ -22,7 +22,7 @@ const Cuisine = () => {
       const resData = await axios.get(
         `http://localhost:5000/cuisines/${urlQuery}`
       );
-      // const recipes = await resData.json();
+
       setCuisineData(resData.data.results);
 
       setIsLoading(false);

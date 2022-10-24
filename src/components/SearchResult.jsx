@@ -18,7 +18,7 @@ const SearchResult = () => {
   const getCuisineData = async (urlQuery) => {
     try {
       const resData = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${urlQuery}`
+        `http://localhost:5000/searchResult/${urlQuery}`
       );
       // const recipes = await resData.json();
       setSearchResultData(resData.data.results);
@@ -30,6 +30,7 @@ const SearchResult = () => {
   };
 
   useEffect(() => {
+    // params.search is fromthe Pages component where the path is path="/searchResult/:search"
     getCuisineData(params.search);
     // passing params.search in the array dependency so that it will re-redner every time user searches
   }, [params.search]);
