@@ -20,7 +20,7 @@ const Cuisine = () => {
   const getCuisineData = async (urlQuery) => {
     try {
       const resData = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${urlQuery}`
+        `http://localhost:5000/cuisines/${urlQuery}`
       );
       // const recipes = await resData.json();
       setCuisineData(resData.data.results);

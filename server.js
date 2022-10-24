@@ -36,4 +36,17 @@ app.get("/vegetarian", async (req, res) => {
   }
 });
 
+app.get("/cuisines/:foodQuery", async (req, res) => {
+  // req.params.foodQuery is from the frontend side which is the Cuisine component.
+  try {
+    const apiRes = await axios.get(
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${req.params.foodQuery}`
+    );
+
+    res.json(apiRes.data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
