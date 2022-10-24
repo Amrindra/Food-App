@@ -14,11 +14,6 @@ function Popular() {
   const { addToCart, cartItems } = useContext(CartContext);
 
   const isAddToCart = cartItems.map((p) => p.id);
-  // const popularItem = popularData.filter((prod) => prod.id);
-  // console.log("isAdd =>" + isAddToCart);
-
-  // console.log(cartItems);
-  // console.log(isAddToCart === popularItem);
 
   const getPopularAPIData = async () => {
     // Checking local storage in the browser and give popular name
