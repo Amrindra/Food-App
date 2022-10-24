@@ -17,7 +17,8 @@ const Payment = () => {
   const [cardValues, setCardValue] = useState({
     cardHolderName: "",
     cardNumber: "",
-    expDate: "",
+    month: "",
+    year: "",
     cvv: "",
   });
   const [errorMsg, setErrorMsg] = useState(false);
@@ -39,7 +40,8 @@ const Payment = () => {
       cardValues.cardHolderName.length === 0 ||
       cardValues.cardNumber.length === 0 ||
       cardValues.cvv.length === 0 ||
-      cardValues.expDate.length === 0
+      cardValues.month.length === 0 ||
+      cardValues.year === 0
     ) {
       setErrorMsg(true);
     } else {
@@ -71,13 +73,17 @@ const Payment = () => {
               <GrSecure />
               Payment
             </h3>
+            {/* <sub style={{ color: "#d1c932" }}>
+              CARD DEMO: You can type in any card number to test it.
+            </sub> */}
             <InputFieldWrapper>
               <InputField>
-                <label htmlFor="name">Card Holder's Name</label>
+                <label htmlFor="cardHolderName">Card Holder's Name</label>
                 <input
                   type="text"
                   placeholder="Name"
                   name="cardHolderName"
+                  pattern="[A-Za-z].{0,}"
                   value={cardValues.cardHolderName}
                   onChange={handleChange}
                 />
@@ -85,7 +91,7 @@ const Payment = () => {
 
               {/* If errorMsg is true and input field is blank it will show error messages if user hits the submit buton*/}
               {errorMsg && cardValues.cardHolderName.length <= 0 ? (
-                <ErrorMessage>Card Holder's Name Cannot Be Blank</ErrorMessage>
+                <ErrorMessage>Card Holder's Name is required</ErrorMessage>
               ) : (
                 ""
               )}
@@ -113,31 +119,55 @@ const Payment = () => {
               </InputField>
 
               {errorMsg && cardValues.cardNumber.length <= 0 ? (
-                <ErrorMessage>Card Number Cannot Be Blank</ErrorMessage>
+                <ErrorMessage>Card Number is required</ErrorMessage>
               ) : (
                 ""
               )}
 
               <InputFieldBottom>
-                <Wrapper>
+                <InputFieldBottomWrapper>
                   <label htmlFor="date">Expiration Date</label>
-                  <input
-                    type="text"
-                    placeholder="MM/DD/YYYY"
-                    name="expDate"
-                    value={cardValues.expDate}
-                    onChange={handleChange}
-                    onFocus={(e) => (e.target.type = "date")}
-                    onBlur={(e) => (e.target.type = "text")}
-                  />
-                  {errorMsg && cardValues.expDate.length <= 0 ? (
-                    <ErrorMessage>Expiration Date Cannot Be Blank</ErrorMessage>
-                  ) : (
-                    ""
-                  )}
-                </Wrapper>
+                  <DateSection>
+                    <div>
+                      <input
+                        type="tel"
+                        placeholder="MM"
+                        name="month"
+                        value={cardValues.month}
+                        onChange={handleChange}
+                        maxLength={2}
+                        min={0}
+                        pattern="\d*"
+                      />
+                      {errorMsg && cardValues.month.length <= 0 ? (
+                        <ErrorMessage>Month is required</ErrorMessage>
+                      ) : (
+                        ""
+                      )}
+                    </div>
 
-                <Wrapper>
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="YYYY"
+                        name="year"
+                        value={cardValues.year}
+                        onChange={handleChange}
+                        maxLength={4}
+                        min={0}
+                        pattern="\d*"
+                      />
+
+                      {errorMsg && cardValues.year.length <= 0 ? (
+                        <ErrorMessage>Year is required</ErrorMessage>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </DateSection>
+                </InputFieldBottomWrapper>
+
+                <InputFieldBottomWrapper>
                   <label htmlFor="cvv">CVV</label>
                   <input
                     type="text"
@@ -155,7 +185,7 @@ const Payment = () => {
                   ) : (
                     ""
                   )}
-                </Wrapper>
+                </InputFieldBottomWrapper>
               </InputFieldBottom>
             </InputFieldWrapper>
 
@@ -204,8 +234,6 @@ const Payment = () => {
 const Container = styled.div`
   display: flex;
   gap: 2rem;
-  /* background: rgba(0, 0, 0, 0.7); */
-  /* backdrop-filter: blur(10px); */
   padding: 30px;
   margin-top: 4rem;
   justify-content: center;
@@ -303,6 +331,11 @@ const InputField = styled.div`
     &:focus {
       outline-color: #2ba64b;
     }
+
+    &:invalid {
+      border: none;
+      outline: 2px solid red;
+    }
   }
 
   @media only screen and (max-width: 580px) {
@@ -327,7 +360,7 @@ const InputFieldBottom = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
+const InputFieldBottomWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 15px;
@@ -356,6 +389,11 @@ const Wrapper = styled.div`
     &::placeholder {
       color: gray;
     }
+
+    &:invalid {
+      border: none;
+      outline: 2px solid red;
+    }
   }
 
   @media only screen and (max-width: 580px) {
@@ -364,6 +402,20 @@ const Wrapper = styled.div`
     label {
       font-size: 1rem;
     }
+  }
+`;
+
+const DateSection = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  input {
+    width: 8rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
