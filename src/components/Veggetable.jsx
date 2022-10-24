@@ -24,9 +24,7 @@ function Veggetable() {
     // } else {
 
     try {
-      const apiRes = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
-      );
+      const apiRes = await fetch(`http://localhost:5000/vegetarian`);
       const data = await apiRes.json();
 
       // Converting data JS object to JSON
