@@ -1,4 +1,3 @@
-const PORT = 5000;
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
@@ -62,4 +61,6 @@ app.get("/searchResult/:searchFoodQuery", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+app.listen(process.env.PORT || process.env.Production, () =>
+  console.log(`Server is running on port ${process.env.PORT}`)
+);
