@@ -19,8 +19,12 @@ const Cuisine = () => {
   // The urlQuery parameter here is used to get the parmas from the url
   const getCuisineData = async (urlQuery) => {
     try {
+      // const resData = await axios.get(
+      //   `http://localhost:5000/cuisines/${urlQuery}`
+      // );
+
       const resData = await axios.get(
-        `http://localhost:5000/cuisines/${urlQuery}`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${urlQuery}`
       );
 
       setCuisineData(resData.data.results);
@@ -42,6 +46,7 @@ const Cuisine = () => {
       {isLoading ? (
         <Loading>
           <BeatLoader color="#313131" />
+          <p>Loading data...</p>
         </Loading>
       ) : (
         <>
@@ -77,6 +82,9 @@ const Loading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 4rem;
 `;
 
 const Card = styled.div`

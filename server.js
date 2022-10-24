@@ -61,6 +61,6 @@ app.get("/searchResult/:searchFoodQuery", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || process.env.Production, () =>
+app.listen(process.env.PORT, () =>
   console.log(`Server is running on port ${process.env.PORT}`)
 );

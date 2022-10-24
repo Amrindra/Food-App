@@ -24,7 +24,10 @@ function Veggetable() {
     // } else {
 
     try {
-      const apiRes = await fetch(`http://localhost:5000/vegetarian`);
+      // const apiRes = await fetch(`http://localhost:5000/vegetarian`);
+      const apiRes = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
+      );
       const data = await apiRes.json();
 
       // Converting data JS object to JSON
@@ -52,6 +55,7 @@ function Veggetable() {
       {isLoading ? (
         <Loading>
           <BeatLoader color="#313131" />
+          <p>Loading data...</p>
         </Loading>
       ) : (
         <>
@@ -125,6 +129,9 @@ const Loading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 4rem;
 `;
 
 const Card = styled.div`
